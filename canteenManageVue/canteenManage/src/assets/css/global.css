@@ -1,0 +1,26 @@
+/* 重置所有元素的盒模型属性，确保一致的尺寸计算 */
+* {
+  box-sizing: border-box;
+}
+
+/* 重置body元素的默认样式，移除内外边距 */
+body {
+  margin: 0;
+  padding: 0;
+  /* 设置文本颜色和字体大小，提高可读性 */
+  color: #333;
+  font-size: 14px;
+}
+
+/* 移除所有链接的文本装饰，以实现自定义样式 */
+a {
+  text-decoration: none;
+}
+
+/* 定义卡片容器的样式，包括背景色、圆角、内边距和阴影效果 */
+.card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

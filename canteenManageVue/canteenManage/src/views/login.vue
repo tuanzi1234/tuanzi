@@ -1,0 +1,187 @@
+<template>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-title" style=" font-size: 30px; font-weight: bold; margin-bottom: 10px; color:#F0FFFF">欢 迎 登 录
+      </div>
+      <el-form ref="formRef" :model="data.form" :rules="data.rules">
+        <el-form-item prop="username">
+          <el-input :prefix-icon="User" v-model="data.form.username" size="large" placeholder="请输入账号"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input show-password :prefix-icon="Lock" v-model="data.form.password" size="large"
+            placeholder="请输入密码"></el-input>
+        </el-form-item>
+        <el-form-item prop="role">
+          <el-select size="large" v-model="data.form.role">
+            <el-option label="管理员" value="ADMIN"></el-option>
+            <el-option label="学生" value="STUDENT"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="validCode">
+          <div class="valid-code">
+            <el-input prefix-icon="Check" size="medium" placeholder="请输入验证码" v-model="data.form.validCode"></el-input>
+            <div class="valid-code-img">
+              <validCode @change="handleValidCodeChange" />
+            </div>
+          </div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" size="large" @click="login">登 录</el-button>
+        </el-form-item>
+        <div style="text-align: right; margin-bottom: 10px;">
+          还没有账号？<a href="/register">立即注册</a>
+        </div>
+      </el-form>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { User, Lock } from '@element-plus/icons-vue'
+import { reactive, ref } from 'vue'
+import request from '@/utils/request'
+import { ElMessage } from 'element-plus'
+import validCode from '../components/validCode.vue'; // 导入 validCode 组件
+
+
+// 定义表格变量和响应式数据
+const data = reactive({
+  form: {
+    username: '',
+    password: '',
+    role: '',
+    validCode: ''
+  },
+  // 验证规则
+  rules: {
+    username: [
+      { required: true, message: '请输入账号', trigger: 'blur' },
+    ],
+    password: [
+      { required: true, message: '请输入密码', trigger: 'blur' },
+    ],
+    validCode: [
+      { required: true, message: '请输入验证码', trigger: 'blur' },
+    ],
+  }
+})
+const validCodeValue = ref('');
+const formRef = ref()
+
+// 验证码改变时触发的函数
+const handleValidCodeChange = (newCode) => {
+  validCodeValue.value = newCode.toLowerCase(); // 将生成的验证码转换为小写
+};
+// 登录函数
+const login = () => {
+  formRef.value.validate((valid) => {
+    // 检查用户输入的验证码是否与系统生成的验证码匹配, 不区分大小写
+    const userInput = data.form.validCode.toLowerCase();
+    if (userInput !== validCodeValue.value) {
+      // 如果验证码不匹配, 显示错误消息并中断登录过程
+      ElMessage.error('验证码错误');
+      return;
+    }
+    if (valid) {// 验证通过
+      request.post('/login', data.form).then(res => {
+        if (res.code === '200') {
+          // 登录成功，跳转到主页
+          ElMessage.success('登录成功')
+          localStorage.setItem('project-user', JSON.stringify(res.data))// 将用户信息存储到本地存储中，名为project-user
+          setInterval(() => {
+            if ('ADMIN' === res.data.role) {
+              location.href = '/manager/home'
+            } else {
+              location.href = '/front/home'
+            }
+          }, 500)
+        } else {
+          // 登录失败，弹出提示框
+          ElMessage.error(res.msg)
+        }
+      }
+      )
+    }
+  })
+}
+
+
+
+</script>
+
+<style scoped>
+/* 设置登录页面的样式 */
+.login-container {
+  /* 设置容器高度为视口高度的100% */
+  height: 100vh;
+  /* 使用flex布局 */
+  display: flex;
+  /* 隐藏溢出内容 */
+  overflow: hidden;
+  /* 水平居中内容 */
+  justify-content: center;
+  /* 垂直居中内容 */
+  align-items: center;
+  /* 设置背景颜色为线性渐变，从下到上颜色逐渐变浅 */
+  background: linear-gradient(to top, #00CD66, #00FF7F);
+
+}
+
+/* 设置登录框的样式 */
+.login-box {
+  /* 设置登录框宽度为500px */
+  width: 500px;
+  /* 设置登录框高度为500px */
+  height: 500px;
+  /* 设置登录框圆角为5px */
+  border-radius: 5px;
+  /* 设置登录框阴影效果 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* 设置登录框背景颜色为半透明的白色 */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* 使用flex布局 */
+  display: flex;
+  /* 水平居中内容 */
+  justify-content: center;
+  /* 垂直居中内容 */
+  align-items: center;
+  /* 设置flex布局方向为垂直方向 */
+  flex-direction: column;
+
+}
+
+/* 设置输入框宽度 */
+.el-input {
+  width: 360px;
+}
+
+/* 设置按钮宽度 */
+.el-button {
+  width: 360px;
+}
+
+/* 设置选择框 */
+.el-select {
+  width: 360px;
+}
+
+/* 设置验证码整体样式 */
+.valid-code {
+  width: 360px;
+  display: flex;
+  height: 40px;
+}
+
+/* 设置验证码图片样式 */
+.valid-code-img {
+  flex: 1;
+  height: 40px;
+}
+
+/* 设置验证码输入框宽度样式 */
+.valid-code.el-input {
+  flex: 1;
+  height: 40px;
+  width: 200px;
+}
+</style>

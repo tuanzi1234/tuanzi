@@ -1,0 +1,138 @@
+/* 定义管理器容器的样式 */
+.manager-container {
+  /* 设置背景颜色为白色 */
+  background-color: #FFFFFF;
+  /* 设置高度为视窗高度的100% */
+  height: 100vh;
+}
+
+
+/* 定义管理器头部的样式 */
+.manager-header {
+  /* 设置高度为60像素 */
+  height: 60px;
+  /* 设置背景颜色为绿色 */
+  background-color: #008B00;
+  /* 使用flex布局 */
+  display: flex;
+  /* 垂直居中对齐 */
+  align-items: center;
+  /* 添加阴影效果 */
+  box-shadow: 0 2px 4px rgba(0, 18, 30, 0.08), 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+/* 定义管理器头部左侧的样式 */
+.manager-header-left {
+  /* 设置背景颜色为绿色 */
+  background-color: #008B00;
+  /* 设置宽度为200像素 */
+  width: 200px;
+  /* 设置高度为父元素的100% */
+  height: 100%;
+  /* 设置左侧内边距为10像素 */
+  padding-left: 10px;
+  /* 使用flex布局 */
+  display: flex;
+  /* 垂直居中对齐 */
+  align-items: center;
+}
+
+/* 定义管理器头部左侧图片的样式 */
+.manager-header-left img {
+  /* 设置图片高度为50像素 */
+  height: 50px;
+  /* 设置图片宽度为50像素 */
+  width: 50px;
+}
+
+/* 定义管理器头部左侧标题的样式 */
+.manager-header-left .title {
+  /* 设置文字颜色为白色 */
+  color: #FFFFFF;
+  /* 设置字体大小为20像素 */
+  font-size: 20px;
+  /* 设置字体为粗体 */
+  font-weight: bold;
+  /* 设置左侧外边距为10像素 */
+  margin-left: 10px;
+}
+
+/* 定义管理器头部中间的样式 */
+.manager-header-center {
+  /* 占据剩余空间 */
+  flex: 1;
+}
+
+/* 定义面包屑的样式 */
+:deep(.el-breadcrumb__inner) {
+  /* 设置文字颜色为白色 */
+  color: #FFFFFF !important;
+
+}
+
+:deep(.el-breadcrumb__separator) {
+  /* 设置文字颜色为白色 */
+  color: #FFFFFF !important;
+
+}
+
+/* 定义管理器头部右侧下拉菜单的样式 */
+.el-tooltip__trigger {
+  outline: none !important;
+  /* 移除轮廓线 */
+}
+
+
+/* 定义左侧管理面板的样式 */
+.manager-main-left {
+  /* 设置宽度为200像素 */
+  width: 200px;
+  /* 添加轻微的阴影效果，增强界面层次感 */
+  box-shadow: 0 0 6px rgba(0, 20, 40, 0.33);
+  min-height: calc(100vh - 60px);
+}
+
+/* 定义右侧管理面板的样式 */
+.manager-main-right {
+  /* 占据剩余空间 */
+  flex: 1;
+  width: 0;
+  padding: 10px;
+}
+
+/* 设置el-menu的样式，使其宽度为200像素，高度充满容器 */
+.el-menu {
+  width: 200px;
+  height: 100%;
+  background-color: #F8F8FF;
+  border: none;
+}
+
+/* 定义一级菜单的样式 */
+.el-menu-item {
+  height: 50px;
+  line-height: 50px;
+  background-color: #F5F5F5;
+}
+
+/* 定义一级菜单的激活状态样式 */
+.el-menu-item.is-active {
+  color: #4876FF;
+}
+
+/* 定义一级菜单的鼠标悬停状态样式 */
+.el-menu-item:not(.is-active):hover {
+  color: #4876FF;
+}
+
+/* 定义二级菜单标题栏的样式 */
+:deep(.el-sub-menu__title) {
+  height: 50px !important;
+  line-height: 50px !important;
+  background-color: #F5F5F5 !important;
+}
+
+/* 定义二级菜单子菜单的样式 */
+.el-menu--inline .el-menu-item {
+  padding-left: 50px !important;
+}

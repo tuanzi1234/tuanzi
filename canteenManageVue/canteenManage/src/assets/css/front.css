@@ -1,0 +1,85 @@
+/* 定义前台头部的样式 */
+.front-header{
+  display: flex;
+  height: 60px;
+  line-height: 60px;
+  background-color:  #E0FFFF;
+}
+
+
+/* 定义头部左侧的样式 */
+.front-header-left{
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* 定义头部左侧的图片样式 */
+.front-header-left img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* 定义头部左侧的标题样式 */
+.front-header-left .title{
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+
+/* 定义前台头部中间的样式 */
+.front-header-center{
+  width: 600px;
+  flex: 1;
+}
+:deep(.el-menu-item){
+  font-size: 20px;
+  background-color:  #E0FFFF;
+}
+.el-menu{
+  background:  #E0FFFF;
+}
+.el-menu-item.is-active{
+  color: #333 !important;
+  border-bottom: none !important;
+}
+.el-menu--horizontal{
+  border-bottom: none!important;
+}
+.front-header-center-menu .el-menu-item.is-active{
+  color: #fff !important;
+  background-color:	#00CDCD !important;
+}
+
+
+/* 定义前台头部右侧的下拉菜单的样式 */
+.el-tooltip__trigger{
+  outline: none !important;
+}
+.front-header-right .el-dropdown{
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* 定义前台主体内容的样式 */
+.main-content {
+  width: 80%;
+  margin: 5px auto;
+}
+
+/* 定义前台公告的样式 */
+.front-notice{
+  padding: 10px 10px;
+  color: #666666;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
