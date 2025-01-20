@@ -30,35 +30,41 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!-- MyBatis Spring Boot Starter: 整合 MyBatis 和 Spring Boot -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>3.0.4</version>
         </dependency>
 
+        <!-- MySQL Connector/J: MySQL 数据库驱动 -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Java JWT: 用于生成和验证 JSON Web Tokens -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>4.3.0</version>
         </dependency>
 
+        <!-- Spring Boot Starter Web: 提供 Web 开发所需的所有依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Spring Boot Starter Test: 提供测试所需的依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+        <!-- PageHelper Spring Boot Starter: 提供分页功能 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -71,15 +77,26 @@
             </exclusions>
         </dependency>
 
+        <!-- Hutool All: 提供各种实用工具类 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.14</version>
         </dependency>
+
+        <!--bcrypt工具包，用于密码密文存储-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
     </dependencies>
+
 
     <build>
         <plugins>
+            <!-- Spring Boot Maven Plugin: 提供 Spring Boot 应用程序的打包和运行支持 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -12,6 +12,7 @@ public class Student extends Account {
     private String email;
     private Double account;
 
+
     public Double getAccount() { return account; }
 
     public void setAccount(Double account) { this.account = account; }
@@ -71,4 +72,7 @@ public class Student extends Account {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
 }

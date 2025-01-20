@@ -3,9 +3,7 @@
     <!----------- 查询系统公告信息 ----------->
     <div class="card">
       <el-input v-model="data.title" prefix-icon="Search" style="width:240px; margin-right: 10px;"
-        placeholder="请输入标题"></el-input>
-      <el-input v-model="data.content" prefix-icon="Search" style="width:240px; margin-right: 10px;"
-        placeholder="请输入内容"></el-input>
+        placeholder="请输入轮播图名称"></el-input>
       <el-button type="info" plain @click="load">查询</el-button>
       <el-button type="info" style="margin: 0 10px;" plain @click="reset">重置</el-button>
     </div>
@@ -18,9 +16,21 @@
     <div class="card" style="margin-bottom: 10px;">
       <el-table stripe :data="data.tableData" border style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" header-align="center" align="center" />
-        <el-table-column prop="title" label="公告标题" />
-        <el-table-column prop="content" label="公告内容" />
-        <el-table-column prop="time" label="发布时间" />
+        <el-table-column prop="name" label="名称" />
+        <el-table-column prop="img" label="图片" >
+          <template v-slot="scope">
+            <el-image :src="scope.row.img" :preview-src-list="[scope.row.img]" fit="cover"
+              style="width: 50px; height: 50px; object-fit: cover; " preview-teleported>
+              <template #error>
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                  <el-icon>
+                    <PictureFilled />
+                  </el-icon>
+                </div>
+              </template>
+            </el-image>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="180" fixed="right">
           <template v-slot="scope">
             <el-button type="primary" circle :icon="Edit" @click="handleEdit(scope.row)"></el-button>
@@ -34,14 +44,17 @@
       <el-pagination @current-change="load" background layout="total, prev, pager, next" :page-size="data.pageSize"
         v-model:current-page="data.pageNum" :total="data.total" />
     </div>
-    <!----------------- 新增公告信息的弹窗 ------------------>
-    <el-dialog title="公告信息" v-model="data.formVisible" width="30%">
+    <!----------------- 新增轮播图信息的弹窗 ------------------>
+    <el-dialog title="轮播图" v-model="data.formVisible" width="30%">
       <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding: 20px;">
-        <el-form-item prop="title" label="公告标题">
-          <el-input v-model="data.form.title" placeholder="请输入公告标题"></el-input>
+        <el-form-item prop="name" label="名称">
+          <el-input v-model="data.form.name" placeholder="请输入轮播图名称"></el-input>
         </el-form-item>
-        <el-form-item prop="content" label="公告内容">
-          <el-input type="textarea" rows="4" v-model="data.form.content" placeholder="请输入公告内容"></el-input>
+        <el-form-item prop="img" label="图片">
+          <el-upload class="upload-demo" :action="baseUrl + '/files/upload'" :on-success="handleImgSuccess"
+            list-type="picture" :show-file-list="false">
+            <el-button type="primary">文件上传</el-button>
+          </el-upload>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -63,23 +76,25 @@ import { Edit, Delete, PictureFilled } from '@element-plus/icons-vue'// 从 Elem
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 
-// 声明响应式公告表单数据的函数
+
+const baseUrl = import.meta.env.VITE_BASE_URL
+// 声明响应式轮播图数据的函数
 const data = reactive({
   formVisible: false,// 控制表单的可见状态，初始设置为不可见
-  form: {},// 表单数据对象，初始为空
+  form: { name: '', img: '' },// 表单数据对象，初始为空
   tableData: [],// 表格数据对象，初始为空
   pageNum: 1,// 页码，初始设置为1
-  pageSize: 5,// 每页显示的条数，初始设置为10
+  pageSize: 10,// 每页显示的条数，初始设置为10
   total: 0,// 总条数，初始设置为0
-  title: null,// 查询条件:标题，初始设置为null
+  name: null,// 查询条件:标题，初始设置为null
   content: null,// 查询条件:内容，初始设置为null
   ids: [],// 选中的id，初始设置为空数组
   rules: {
-    title: [
-      { required: true, message: '请输入公告标题', trigger: 'blur' },
+    name: [
+      { required: true, message: '请输入轮播图名称', trigger: 'blur' },
     ],
-    content: [
-      { required: true, message: '请输入公告内容', trigger: 'blur' },
+    img: [
+      { required: true, message: '请传入轮播图图片', trigger: 'blur' },
     ],
   },
 }
@@ -91,9 +106,9 @@ const handleAdd = () => {
   data.form = {} // 初始化表单数据，清空之前的数据
   data.formVisible = true// 点击新增按钮时，将表单的可见状态设置为true，显示表单
 }
-// 新增系统公告信息的函数
+// 新增轮播图信息的函数
 const add = () => {
-  request.post('/notice/add', data.form).then(res => {
+  request.post('/sideshow/add', data.form).then(res => {
     if (res.code === '200') {
       ElMessage.success('添加成功')
       load()// 新增成功后，重新加载系统公告信息列表
@@ -114,7 +129,7 @@ const handleSelectionChange = (rows) => {
 }
 //分页查询系统公告信息的函数
 const load = () => {
-  request.get('/notice/selectPage', {
+  request.get('/sideshow/selectPage', {
     params: {
       pageNum: data.pageNum,
       pageSize: data.pageSize,
@@ -132,7 +147,7 @@ const load = () => {
 }
 // 更新系统公告信息的函数
 const update = () => {
-  request.put('/notice/update', data.form).then(res => {
+  request.put('/sideshow/update', data.form).then(res => {
     if (res.code === '200') {
       ElMessage.success('更新成功')
       load()// 更新成功后，重新加载系统公告信息列表
@@ -145,7 +160,7 @@ const update = () => {
 // 删除单个系统公告信息的函数
 const del = (row) => {//传整行数据，否则可能无法请求到id
   ElMessageBox.confirm('是否删除该系统公告信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
-    request.delete(`/notice/delete/${row.id}`).then(res => {
+    request.delete(`/sideshow/delete/${row.id}`).then(res => {
       if (res.code === '200') {
         ElMessage.success('删除成功')
         load()
@@ -164,7 +179,7 @@ const delBatch = () => {
     return
   }
   ElMessageBox.confirm('是否删除该系统公告信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
-    request.delete(`/notice/delete/batch`, { data: data.ids }).then(res => {
+    request.delete(`/sideshow/delete/batch`, { data: data.ids }).then(res => {
       if (res.code === '200') {
         ElMessage.success('删除成功')
         load()
@@ -184,11 +199,15 @@ const save = () => {
     }
   })
 }
+// 处理图片上传成功的函数
+const handleImgSuccess = (res) => {
+  data.form.img = res.data
+  ElMessage.success('文件上传成功，点击“确定”即可查看')
+}
 
 // 重置查询条件的函数
 const reset = () => {
-  data.title = null
-  data.content = null
+  data.name = null
   load()
 }
 //调用分页查询函数

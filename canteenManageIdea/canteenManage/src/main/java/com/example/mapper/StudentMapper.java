@@ -9,12 +9,12 @@ import java.util.List;
 public interface StudentMapper {
 
     // 根据id查询学生
-    @Select("select * from `student` where id = #{id}")
+    @Select("select * from `student` where id = #{id} order by username ")
     Student selectById(Integer id);
 
     // 根据用户名查询学生
-    @Select("select * from `student` where username = #{username}")
-    Student selectByUsername(String studentname);
+    @Select("select * from `student` where username = #{username} order by username ")
+    Student selectByUsername(String username);
 
     // 查询所有学生
     List<Student> selectAll(Student student);

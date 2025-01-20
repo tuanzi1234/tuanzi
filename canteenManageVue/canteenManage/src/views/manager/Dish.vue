@@ -129,7 +129,7 @@ const data = reactive({
   form: {},// 表单数据对象，初始为空
   tableData: [],// 表格数据对象，初始为空
   pageNum: 1,// 页码，初始设置为1
-  pageSize: 10,// 每页显示的条数，初始设置为10
+  pageSize: 5,// 每页显示的条数，初始设置为10
   total: 0,// 总条数，初始设置为0
   title: null,// 查询条件:标题，初始设置为null
   content: null,// 查询条件:内容，初始设置为null
@@ -265,7 +265,7 @@ const delBatch = () => {
 // 处理头像上传成功的函数
 const handleImgSuccess = (res) => {
   data.form.img = res.data
-  ElMessage.success('文件上传成功，退出即可查看')
+  ElMessage.success('文件上传成功，点击“确定”即可查看')
 }
 // 点击保存按钮时触发的函数
 const save = () => {

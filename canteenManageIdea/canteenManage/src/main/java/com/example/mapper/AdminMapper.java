@@ -9,11 +9,11 @@ import java.util.List;
 public interface AdminMapper {
 
     // 根据id查询管理员
-    @Select("select * from `admin` where id = #{id}")
+    @Select("select * from `admin` where id = #{id} order by username ")
     Admin selectById(Integer id);
 
     // 根据用户名查询管理员
-    @Select("select * from `admin` where username = #{username}")
+    @Select("select * from `admin` where username = #{username} order by username ")
     Admin selectByUsername(String username);
 
     // 查询所有管理员

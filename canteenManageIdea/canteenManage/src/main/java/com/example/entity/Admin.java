@@ -11,6 +11,8 @@ public class Admin extends Account{
     private String phone;
     private String email;
 
+
+
     public Integer getId() {
         return id;
     }
@@ -66,4 +68,6 @@ public class Admin extends Account{
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

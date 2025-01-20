@@ -12,6 +12,7 @@ import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class AdminService {
             throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);// 如果用户名已存在，则抛出"用户已存在"的异常
         }
         if (ObjectUtil.isEmpty(admin.getPassword())) {
-            admin.setPassword(Constants.USER_DEFAULT_PASSWORD);// 如果密码为空，则设置默认密码为"123456"
+            admin.setPassword(BCrypt.hashpw(Constants.USER_DEFAULT_PASSWORD, BCrypt.gensalt()));// 如果密码为空，则设置默认密码为"123456"
         }
         if (ObjectUtil.isEmpty(admin.getName())) {
             admin.setName(admin.getUsername());// 如果姓名为空，则设置默认姓名为用户名
@@ -58,9 +59,6 @@ public class AdminService {
     // 根据id更新管理员信息
     public void updateById(Admin admin) {
         Admin dbAdmin = adminMapper.selectByUsername(admin.getUsername());
-        if (ObjectUtil.isNotNull(dbAdmin)) {
-            throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);// 如果用户名已存在，则抛出"用户已存在"的异常
-        }
         adminMapper.updateById(admin);
     }
 
@@ -83,7 +81,7 @@ public class AdminService {
         if (ObjectUtil.isNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!dbAdmin.getPassword().equals(account.getPassword())) {
+        if (!BCrypt.checkpw(account.getPassword(), dbAdmin.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
         // 生成token
@@ -100,10 +98,12 @@ public class AdminService {
         if (ObjectUtil.isNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if (!account.getPassword().equals(dbAdmin.getPassword())) {
+        if (!BCrypt.checkpw(account.getPassword(), dbAdmin.getPassword())) {
             throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
         }
-        dbAdmin.setPassword(account.getNewPassword());
+        // 生成新密码的哈希值
+        String newPasswordHash = BCrypt.hashpw(account.getNewPassword(), BCrypt.gensalt());
+        dbAdmin.setPassword(newPasswordHash);
         adminMapper.updateById(dbAdmin);
     }
 }

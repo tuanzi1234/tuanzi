@@ -3,7 +3,7 @@
     <div class="card-title" style="margin: 10px 0 20px 15px; font-weight: bold; font-size: 20px; ">修改密码</div>
     <el-form ref="formRef" :rules="data.rules" :model="data.user" label-width="70px" style="padding: 20px; ">
       <el-form-item label="原密码" prop="password">
-        <el-input v-model="data.user.password" placeholder="请输入原密码" show-password></el-input>
+        <el-input v-model="data.user.password" placeholder="请输入原密码" show-password ></el-input>
       </el-form-item>
       <el-form-item label="新密码" prop="newPassword">
         <el-input v-model="data.user.newPassword" placeholder="请输入新密码" show-password></el-input>
@@ -41,9 +41,14 @@ const validatePass = (rule, value, callback) => {
   }
 }
 
+const student = JSON.parse(localStorage.getItem('project-user') || '{}')
 // 用户表单数据
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('project-user') || '{}'), 
+  user: {
+    password: '', // 初始化为空字符串
+    newPassword: '',
+    confirmPassword: ''
+  }, 
   rules: {
     password: [
       { required: true, message: '请输入原密码', trigger: 'blur' },
@@ -61,7 +66,12 @@ const data = reactive({
 const updatePassword = () => {
   formRef.value.validate(valid => {
     if (valid) {
-      request.put('/updatePassword', data.user).then(res => {
+      const studentData ={
+        ...student,
+       password: data.user.password,
+       newPassword: data.user.newPassword,
+      }
+      request.put('/updatePassword', studentData).then(res => {
         if (res.code === '200') {
           ElMessage.success('更新成功')
           setInterval(() => {
@@ -82,7 +92,10 @@ const logout = () => {
   // 清空本地存储
   localStorage.removeItem('project-user');
   // 退出登录
-  location.href = '/login'
+  setInterval(() => {
+     location.href = '/login'
+  }, 500)
+ 
 }
 
 

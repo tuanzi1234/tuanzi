@@ -10,6 +10,7 @@
             <if test="name != null"> and name like concat('%', #{name}, '%')</if>
             <if test="username != null"> and username like concat('%', #{username}, '%')</if>
         </where>
+       order by username asc
     </select>
 
     <!-- insert into student (username, password, ...) values ('student', 'student', ...) -->

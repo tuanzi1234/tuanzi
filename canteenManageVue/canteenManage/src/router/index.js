@@ -70,7 +70,12 @@ const router = createRouter({
           meta:{name: '菜品信息'},
           component: () => import('@/views/manager/Dish.vue'),
         },
-        
+        //定义管理管理轮播图的子路由
+        {
+          path: 'sideshow',
+          meta:{name: '轮播图管理'},
+          component: () => import('@/views/manager/Sideshow.vue'),
+        },
       ],
     },
     // 定义路径为前台的路由

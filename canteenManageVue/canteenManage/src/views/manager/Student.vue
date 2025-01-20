@@ -56,8 +56,8 @@
     </div>
     <!----------------- 新增用户信息的弹窗 ------------------>
     <el-dialog title="用户信息" v-model="data.formVisible" width="30%">
-      <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="70px" style="padding: 20px;">
-        <el-form-item prop="username" label="用户名">
+      <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding: 20px;">
+        <el-form-item prop="username" label="用户账号">
           <el-input v-model="data.form.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item prop="avatar" label="头像">
@@ -102,7 +102,7 @@ const data = reactive({
   form: {},// 表单数据对象，初始为空
   tableData: [],// 表格数据对象，初始为空
   pageNum: 1,// 页码，初始设置为1
-  pageSize: 10,// 每页显示的条数，初始设置为10
+  pageSize: 5,// 每页显示的条数，初始设置为10
   total: 0,// 总条数，初始设置为0
   name: null,// 查询条件:姓名，初始设置为null
   username: null,// 查询条件:账号，初始设置为null
