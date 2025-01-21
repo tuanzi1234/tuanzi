@@ -106,6 +106,12 @@ const router = createRouter({
           meta:{name: '系统公告'},
           component: () => import('@/views/front/Notice.vue'),
         },
+        //定义前台菜品详情的子路由
+        {
+          path: 'dishDetail',
+          meta:{name: '菜品详情'},
+          component: () => import('@/views/front/dishDetail.vue'),
+        },
       ],
     },
     {

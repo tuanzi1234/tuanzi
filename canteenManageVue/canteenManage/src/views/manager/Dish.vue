@@ -46,6 +46,7 @@
             <span style=" color: #008B45 ;"> {{ scope.row.num }}份 </span>
           </template>
         </el-table-column>
+        <el-table-column prop="sales" label="销量" />
         <el-table-column prop="status" label="上餐状态">
           <template v-slot="scope">
             <el-tag v-if="scope.row.status === '上架'" type="success">{{ scope.row.status }}</el-tag>
@@ -216,6 +217,9 @@ const load = () => {
     }
   })
 }
+//调用分页查询函数
+load()
+
 // 更新菜品信息的函数
 const update = () => {
   request.put('/dish/update', data.form).then(res => {
@@ -282,8 +286,6 @@ const reset = () => {
   data.name = null
   load()
 }
-//调用分页查询函数
-load()
 
 </script>
 

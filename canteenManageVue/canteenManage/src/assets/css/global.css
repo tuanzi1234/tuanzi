@@ -24,3 +24,24 @@ a {
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* 定义一个名为.line2的类，用于控制文本的显示方式 */
+.line2 {
+  /* 允许单词在边界内换行 */
+  word-break: break-all; 
+  /* 当文本溢出时显示省略号 */
+  text-overflow: ellipsis; 
+  /* 使用弹性盒模型布局 */
+  display: -webkit-box; 
+  /* 设置弹性盒模型的子元素排列方向为垂直方向 */
+  -webkit-box-orient: vertical; 
+  /* 设置文本显示的行数为2行，超出部分省略 */
+  -webkit-line-clamp: 2; 
+  /* 隐藏超出部分的文本 */
+  overflow: hidden; 
+}
+
+.front_card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}

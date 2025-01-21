@@ -82,7 +82,7 @@ public class StudentService {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
         if (!BCrypt.checkpw(account.getPassword(), dbStudent.getPassword())) {
-            throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
+            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
         }
         // 生成token
 
@@ -114,6 +114,22 @@ public class StudentService {
         // 加密密码
         student.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt()));
         add(student);
+    }
+
+
+    // 重置密码
+    public void resetPassword(Account account) {
+        Student dbStudent = studentMapper.selectByUsername(account.getUsername());
+        if (ObjectUtil.isNull(dbStudent)) {
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        if(!dbStudent.getPhone().equals(account.getPhone())){
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        // 生成新密码的哈希值
+        String newPasswordHash = BCrypt.hashpw(Constants.USER_DEFAULT_PASSWORD, BCrypt.gensalt());
+        dbStudent.setPassword(newPasswordHash);
+        studentMapper.updateById(dbStudent);
     }
 }
 

@@ -10,6 +10,7 @@ public class Dish {
     private Integer num;
     private String status;
     private String categoryName;
+    private Integer sales;
 
 
     public Integer getId() {
@@ -82,6 +83,14 @@ public class Dish {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public Integer getSales() {
+        return sales;
+    }
+
+    public void setSales(Integer sales) {
+        this.sales = sales;
     }
 }
 

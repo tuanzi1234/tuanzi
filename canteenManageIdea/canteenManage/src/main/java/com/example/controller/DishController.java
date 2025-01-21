@@ -67,4 +67,11 @@ public class DishController {
         return Result.success(pageInfo);
     }
 
+    //根据销量查询菜品
+    @GetMapping("/selectBySales")
+    public Result selectBySales(){
+        List<Dish> list = dishService.selectBySales();
+        return Result.success(list);
+    }
+
 }

@@ -7,6 +7,7 @@ public class Account {
     private String password;
     private String role;
     private String newPassword;
+    private String phone;
     private String token;
 
 
@@ -41,6 +42,14 @@ public class Account {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getToken() {

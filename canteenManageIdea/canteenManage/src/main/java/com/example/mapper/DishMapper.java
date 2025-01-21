@@ -25,6 +25,7 @@ public interface DishMapper {
     @Delete("delete from `dish` where id = #{id}")
     void deleteById(Integer id);
 
-
-
+    // 根据销量查询菜品
+    @Select("select * from `dish` order by sales desc limit 8 ")
+    List<Dish> selectBySales();
 }

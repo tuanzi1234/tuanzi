@@ -57,4 +57,8 @@ public class DishService {
     }
 
 
+    public List<Dish> selectBySales() {
+        return dishMapper.selectBySales();
+
+    }
 }

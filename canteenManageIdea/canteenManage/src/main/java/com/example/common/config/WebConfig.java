@@ -26,6 +26,6 @@ public class WebConfig implements WebMvcConfigurer {
                 // 排除根路径
                 .excludePathPatterns("/")
                 // 排除登录、注册和文件相关路径
-                .excludePathPatterns("/login", "/register", "/files/**");
+                .excludePathPatterns("/login", "/register", "/files/**", "/resetPassword");
     }
 }

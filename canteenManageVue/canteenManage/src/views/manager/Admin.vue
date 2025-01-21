@@ -162,6 +162,9 @@ const load = () => {
     }
   })
 }
+//调用分页查询函数
+load()
+
 // 更新管理员信息的函数
 const update = () => {
   request.put('/admin/update', data.form).then(res => {
@@ -227,7 +230,6 @@ const reset = () => {
   data.name = null
   load()
 }
-//调用分页查询函数
-load()
+
 
 </script>

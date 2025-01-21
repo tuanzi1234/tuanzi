@@ -6,6 +6,7 @@ import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.entity.Admin;
+import com.example.entity.Admin;
 import com.example.exception.CustomException;
 import com.example.mapper.AdminMapper;
 import com.example.utils.TokenUtils;
@@ -82,7 +83,7 @@ public class AdminService {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
         if (!BCrypt.checkpw(account.getPassword(), dbAdmin.getPassword())) {
-            throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
+            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
         }
         // 生成token
 
@@ -103,6 +104,21 @@ public class AdminService {
         }
         // 生成新密码的哈希值
         String newPasswordHash = BCrypt.hashpw(account.getNewPassword(), BCrypt.gensalt());
+        dbAdmin.setPassword(newPasswordHash);
+        adminMapper.updateById(dbAdmin);
+    }
+
+    // 重置密码
+    public void resetPassword(Account account) {
+        Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
+        if (ObjectUtil.isNull(dbAdmin)) {
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        if(!dbAdmin.getPhone().equals(account.getPhone())){
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+        }
+        // 生成新密码的哈希值
+        String newPasswordHash = BCrypt.hashpw(Constants.USER_DEFAULT_PASSWORD, BCrypt.gensalt());
         dbAdmin.setPassword(newPasswordHash);
         adminMapper.updateById(dbAdmin);
     }

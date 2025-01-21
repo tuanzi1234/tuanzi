@@ -28,12 +28,44 @@
         <el-form-item>
           <el-button type="primary" size="large" @click="login">登 录</el-button>
         </el-form-item>
-        <div style="text-align: right; margin-bottom: 10px;">
-          还没有账号？<a href="/register">立即注册</a>
+        <div style="display: flex;">
+          <div style="flex: 1; margin-bottom: 10px;">
+            <a style="color: #551A8B;" @click="showResetDialog" >忘记密码？</a>
+          </div>
+          <div style="flex: 1;text-align: right; margin-bottom: 10px;">
+            还没有账号？<a href="/register">立即注册</a>
+          </div>
         </div>
       </el-form>
+     <div class="reset-dialog">
+      <el-dialog  title="忘记密码" v-model="data.formVisible" width="35%">
+        <div class="centered-dialog">
+        <el-form ref="resetFormRef" :rules="resetForm.resetRules" :model="resetForm.data" label-width="60px" >
+          <el-form-item prop="username" label="账号">
+            <el-input v-model="resetForm.data.username" placeholder="请输入账号"></el-input>
+          </el-form-item>
+          <el-form-item prop="phone" label="电话">
+            <el-input v-model="resetForm.data.phone" placeholder="请输入电话"></el-input>
+          </el-form-item>
+          <el-form-item prop="role" label="角色">
+          <el-select size="large" v-model="resetForm.data.role">
+            <el-option label="管理员" value="ADMIN"></el-option>
+            <el-option label="学生" value="STUDENT"></el-option>
+          </el-select>
+        </el-form-item>
+        </el-form>
+      </div>
+        <template #footer>
+          <div class="dialog-footer">
+            <el-button  @click="data.formVisible = false">取消</el-button>
+            <el-button type="primary" @click="resetPassword">确定</el-button>
+          </div>
+        </template>
+      </el-dialog>
+    </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -44,6 +76,27 @@ import { ElMessage } from 'element-plus'
 import validCode from '../components/validCode.vue'; // 导入 validCode 组件
 
 
+// 定义重置密码的表单变量和响应式数据
+const resetForm = reactive({
+  data: {
+    username: '',
+    phone: '',
+    role: '',
+  },
+  
+  // 定义重置密码表单的验证规则
+  resetRules: {
+    username: [
+      { required: true, message: '请输入账号', trigger: 'blur' },
+    ],
+    phone: [
+      { required: true, message: '请输入电话', trigger: 'blur' },
+    ],
+    role: [
+      { required: true, message: '请选择角色', trigger: 'blur' },
+    ],
+  }
+})
 // 定义表格变量和响应式数据
 const data = reactive({
   form: {
@@ -66,7 +119,8 @@ const data = reactive({
   }
 })
 const validCodeValue = ref('');
-const formRef = ref()
+const formRef = ref();
+const resetFormRef = ref();
 
 // 验证码改变时触发的函数
 const handleValidCodeChange = (newCode) => {
@@ -101,6 +155,29 @@ const login = () => {
         }
       }
       )
+    }
+  })
+}
+// 定义显示重置密码弹窗的方法
+const showResetDialog = () => {
+  // 重置重置密码表单的数据
+  resetForm.data = {
+  }
+  data.formVisible = true
+}
+
+// 定义保存重置密码的方法
+const resetPassword = () => {
+  resetFormRef.value.validate((valid) => {
+    if (valid) {
+      request.put('/resetPassword', resetForm.data).then(res => {
+        if (res.code === '200') {
+          ElMessage.success('密码重置成功')
+          data.formVisible = false
+        } else {
+          ElMessage.error(res.msg)
+        }
+      })
     }
   })
 }
@@ -183,5 +260,27 @@ const login = () => {
   flex: 1;
   height: 40px;
   width: 200px;
+}
+
+/*设置重置密码弹窗底部按钮的样式 */
+.centered-dialog {
+  /* 使用flex布局 */
+  display: flex;
+  /* 水平居中内容 */
+  justify-content: center;
+  /* 垂直居中内容 */
+  align-items: center;
+  /* 设置flex布局方向为垂直方向 */
+  flex-direction: column;
+}
+.dialog-footer {
+  /* 使用flex布局 */
+  display: flex;
+  /* 水平居中内容 */
+  justify-content: center;
+  /* 垂直居中内容 */
+  align-items: center;
+  /* 设置flex布局方向为水平方向 */
+  flex-direction: row;
 }
 </style>

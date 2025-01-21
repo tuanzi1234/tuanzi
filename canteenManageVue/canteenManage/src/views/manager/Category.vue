@@ -126,6 +126,9 @@ const load = () => {
     }
   })
 }
+//调用分页查询函数
+load()
+
 // 更新系统公告信息的函数
 const update = () => {
   request.put('/category/update', data.form).then(res => {
@@ -187,7 +190,6 @@ const reset = () => {
   data.content = null
   load()
 }
-//调用分页查询函数
-load()
+
 
 </script>

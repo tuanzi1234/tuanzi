@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.example.common.Result;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
@@ -51,6 +52,18 @@ public class WebController {
         }
         if (RoleEnum.STUDENT.name().equals(account.getRole())) {
             studentService.updatePassword(account);
+        }
+        return Result.success();
+    }
+
+    //重置密码
+    @PutMapping("/resetPassword")
+    public Result resetPassword(@RequestBody Account account) {
+        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
+            adminService.resetPassword(account);
+        }
+        if (RoleEnum.STUDENT.name().equals(account.getRole())) {
+            studentService.resetPassword(account);
         }
         return Result.success();
     }
