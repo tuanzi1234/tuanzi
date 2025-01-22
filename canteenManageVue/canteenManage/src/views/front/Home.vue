@@ -7,7 +7,7 @@
       <div style="flex: 1;">
         <el-carousel height="300px" style=" border-radius: 5px;">
           <el-carousel-item v-for="item in data.sideshowData" :key="item.id">
-            <img :src="item.img" alt="" style="height: 300px; width: 100%;">
+            <img :src="item.img" alt="" style="height: 300px; width: 100%; object-fit: contain; ">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -52,7 +52,7 @@
                   <div style="font-size: 20px;">{{ item.name }}</div>
                   <div class="line2" style="margin-top: 5px; line-height: 20px; height: 40px;">{{ item.content }}</div>
                 </div>
-                <div style="margin-top: 5px; display: flex; align-items: center;">
+                <div style="margin-top: 5px; display: flex; align-items: center; padding: 0 5px;">
                   <div style="margin-right: 50px; font-size: 25px; color: red;">￥ {{ item.price }}</div>
                   <div style="flex: 1; text-align: right;">剩余：{{ item.num }} 份</div>
                 </div>
@@ -81,7 +81,7 @@
                   <div style="font-size: 20px;">{{ item.name }}</div>
                   <div class="line2" style="margin-top: 5px; line-height: 20px; height: 40px;">{{ item.content }}</div>
                 </div>
-                <div style="margin-top: 5px; display: flex; align-items: center;">
+                <div style="margin-top: 5px; display: flex; align-items: center; padding: 0 5px;">
                   <div style="margin-right: 50px; font-size: 25px; color: red;">￥ {{ item.price }}</div>
                   <div style="flex: 1; text-align: right;">剩余：{{ item.num }} 份</div>
                 </div>

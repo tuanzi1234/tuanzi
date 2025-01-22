@@ -26,11 +26,11 @@
           </div>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="large" @click="login">登 录</el-button>
+          <el-button type="info" size="large" @click="login">登 录</el-button>
         </el-form-item>
         <div style="display: flex;">
           <div style="flex: 1; margin-bottom: 10px;">
-            <a style="color: #551A8B;" @click="showResetDialog" >忘记密码？</a>
+            <a style="color: #551A8B; cursor: pointer;" @click="showResetDialog" >忘记密码？</a>
           </div>
           <div style="flex: 1;text-align: right; margin-bottom: 10px;">
             还没有账号？<a href="/register">立即注册</a>

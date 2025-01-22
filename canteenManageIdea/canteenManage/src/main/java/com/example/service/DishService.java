@@ -1,6 +1,9 @@
 package com.example.service;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.example.entity.Category;
 import com.example.entity.Dish;
+import com.example.mapper.CategoryMapper;
 import com.example.mapper.DishMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,6 +18,9 @@ public class DishService {
     @Resource
     private DishMapper dishMapper;// 注入DishMapper，用于数据库操作
 
+    @Resource
+    private CategoryMapper categoryMapper;
+
     // 查询所有菜品
     public List<Dish> selectAll(Dish dish) {
         return dishMapper.selectAll(dish);
@@ -22,7 +28,18 @@ public class DishService {
 
     // 根据id查询菜品
     public Dish selectById(Integer id) {
-        return dishMapper.selectById(id);
+        Dish dish = dishMapper.selectById(id);
+        Category category = categoryMapper.selectById(dish.getCategoryId());
+        if (ObjectUtil.isNotNull(category)) {
+            dish.setCategoryName(category.getTitle());
+        }
+        return dish;
+    }
+
+    //根据销量查询菜品
+    public List<Dish> selectBySales() {
+        return dishMapper.selectBySales();
+
     }
 
     // 分页查询菜品
@@ -57,8 +74,4 @@ public class DishService {
     }
 
 
-    public List<Dish> selectBySales() {
-        return dishMapper.selectBySales();
-
-    }
 }

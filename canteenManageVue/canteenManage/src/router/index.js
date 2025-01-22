@@ -110,14 +110,14 @@ const router = createRouter({
         {
           path: 'dishDetail',
           meta:{name: '菜品详情'},
-          component: () => import('@/views/front/dishDetail.vue'),
+          component: () => import('@/views/front/DishDetail.vue'),
         },
       ],
     },
     {
       // 定义路径为 /login 的登录路由
       path: '/login',
-      component: () => import('@/views/login.vue'),
+      component: () => import('@/views/Login.vue'),
     },
     {
       // 定义路径为 /register 的注册路由
@@ -130,10 +130,35 @@ const router = createRouter({
       component: () => import('@/views/404.vue'),
     },
     {
+      // 定义路径为 /404 的路由
+      path: '/403',
+      component: () => import('@/views/403.vue'),
+    },
+    {
       path:'/:pathMatch(.*)*',
       redirect: '/404',
     }
   ],
+})
+
+// 定义路由守卫的回调函数，用于处理路由导航的逻辑
+router.beforeEach((to, from, next) => {
+  //to是要进入的目标路由对象
+  //from 是当前导航正在离开的路由对象
+  //next 是一个函数，用于控制导航的下一步操作
+  // 检查是否为登录注册页面，如果是，则放行
+  if (to.path === '/login' || to.path === '/register') {
+    next();
+    return;
+  }
+
+  let adminPath = '/manager'
+  let user = JSON.parse(localStorage.getItem('project-user' || '{}'))
+  if(user.role !== 'ADMIN' && to.path.startsWith(adminPath)){
+    next('/403')
+  }else{
+    next()
+  }
 })
 
 // 导出创建好的路由实例
