@@ -76,6 +76,12 @@ const router = createRouter({
           meta:{name: '轮播图管理'},
           component: () => import('@/views/manager/Sideshow.vue'),
         },
+        //定义管理管理浏览记录的子路由
+        {
+          path: 'history',
+          meta:{name: '浏览记录管理'},
+          component: () => import('@/views/manager/History.vue'),
+        },
       ],
     },
     // 定义路径为前台的路由
@@ -111,6 +117,12 @@ const router = createRouter({
           path: 'dishDetail',
           meta:{name: '菜品详情'},
           component: () => import('@/views/front/DishDetail.vue'),
+        },
+         //定义前台浏览历史的子路由
+         {
+          path: 'history',
+          meta:{name: '浏览历史'},
+          component: () => import('@/views/front/History.vue'),
         },
       ],
     },

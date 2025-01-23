@@ -3,6 +3,7 @@ package com.example.entity;
 
 //统一的账户信息
 public class Account {
+    private Integer id;
     private String username;
     private String password;
     private String role;
@@ -10,7 +11,13 @@ public class Account {
     private String phone;
     private String token;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -59,6 +66,5 @@ public class Account {
     public void setToken(String token) {
         this.token = token;
     }
-
 
 }

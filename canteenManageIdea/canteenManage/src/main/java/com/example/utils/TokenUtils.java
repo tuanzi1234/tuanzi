@@ -45,6 +45,8 @@ public class TokenUtils {
     public void init() {
         // 将AdminService实例赋值给静态变量
         staticAdminService = adminService;
+        // 将StudentService实例赋值给静态变量
+        staticStudentService = studentService;
     }
 
     // 创建JWT token

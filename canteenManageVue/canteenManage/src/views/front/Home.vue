@@ -125,7 +125,9 @@ loadSideshow()
 
 //跳转到指定页面的函数
 const navTo = (url) => {
-  location.href = url
+  setInterval(() => {
+    location.href = url
+  }, 300)
 }
 
 //查询分类的函数

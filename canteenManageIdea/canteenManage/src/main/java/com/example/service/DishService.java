@@ -5,10 +5,12 @@ import com.example.entity.Category;
 import com.example.entity.Dish;
 import com.example.mapper.CategoryMapper;
 import com.example.mapper.DishMapper;
+import com.example.mapper.HistoryMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class DishService {
 
     @Resource
     private CategoryMapper categoryMapper;
+
+    @Resource
+    private HistoryMapper historyMapper;
 
     // 查询所有菜品
     public List<Dish> selectAll(Dish dish) {
@@ -60,16 +65,24 @@ public class DishService {
         dishMapper.updateById(dish);
     }
 
+
+
     // 根据id删除单个菜品
+    @Transactional(rollbackFor = Exception.class)
     public void deleteById(Integer id) {
         dishMapper.deleteById(id);
+        //删除浏览记录
+        historyMapper.deleteByDishId(id);
     }
 
 
     // 批量删除菜品
+    @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
             dishMapper.deleteById(id);
+            //删除浏览记录
+            historyMapper.deleteByDishId(id);
         }
     }
 

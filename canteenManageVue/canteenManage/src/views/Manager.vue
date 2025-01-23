@@ -60,6 +60,7 @@
             <el-menu-item index="/manager/dish">菜品信息管理</el-menu-item>
             <el-menu-item index="/manager/sideshow">轮播图管理</el-menu-item>
             <el-menu-item index="/manager/notice">系统公告</el-menu-item>
+            <el-menu-item index="/manager/history">浏览记录管理</el-menu-item>
           </el-sub-menu>
           <!---------- 用户管理 ---------->
           <el-sub-menu index="2">

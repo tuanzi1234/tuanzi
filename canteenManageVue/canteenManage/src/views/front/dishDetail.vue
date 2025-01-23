@@ -52,6 +52,17 @@ const loadDish = () => {
 }
 loadDish()
 
+//更新浏览记录的函数
+const changeHistory = () => {
+  request.post('/history/add', {
+    dishId: data.dishId
+  }).then(res => {
+    if (res.code !== '200') {
+      ElMessage.error(res.msg)
+    }
+  })
+}
+changeHistory()
 </script>
 
 <style scoped></style>
