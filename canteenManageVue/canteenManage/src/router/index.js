@@ -70,17 +70,41 @@ const router = createRouter({
           meta:{name: '菜品信息'},
           component: () => import('@/views/manager/Dish.vue'),
         },
-        //定义管理管理轮播图的子路由
+        //定义管理轮播图的子路由
         {
           path: 'sideshow',
           meta:{name: '轮播图管理'},
           component: () => import('@/views/manager/Sideshow.vue'),
         },
-        //定义管理管理浏览记录的子路由
+        //定义管理浏览记录的子路由
         {
           path: 'history',
           meta:{name: '浏览记录管理'},
           component: () => import('@/views/manager/History.vue'),
+        },
+        //定义管理点赞记录的子路由
+        {
+          path: 'praise',
+          meta:{name: '点赞记录管理'},
+          component: () => import('@/views/manager/Praise.vue'),
+        },
+        //定义管理收藏记录的子路由
+        {
+          path: 'collect',
+          meta:{name: '收藏记录管理'},
+          component: () => import('@/views/manager/Collect.vue'),
+        },
+        //定义管理反馈意见的子路由
+        {
+          path: 'feedback',
+          meta:{name: '反馈意见管理'},
+          component: () => import('@/views/manager/Feedback.vue'),
+        },
+        //定义管理食堂资讯的子路由
+        {
+          path: 'Information',
+          meta:{name: '食堂资讯管理'},
+          component: () => import('@/views/manager/Information.vue'),
         },
       ],
     },
@@ -123,6 +147,30 @@ const router = createRouter({
           path: 'history',
           meta:{name: '浏览历史'},
           component: () => import('@/views/front/History.vue'),
+        },
+         //定义前台点赞记录的子路由
+         {
+          path: 'praise',
+          meta:{name: '点赞记录'},
+          component: () => import('@/views/front/Praise.vue'),
+        },
+        //定义前台收藏记录的子路由
+        {
+          path: 'collect',
+          meta:{name: '收藏记录'},
+          component: () => import('@/views/front/Collect.vue'),
+        },
+        //定义前台意见反馈的子路由
+        {
+          path: 'feedback',
+          meta:{name: '意见反馈'},
+          component: () => import('@/views/front/Feedback.vue'),
+        },
+        //定义前台我的意见反馈的子路由
+        {
+          path: 'myFeedback',
+          meta:{name: '我的意见反馈'},
+          component: () => import('@/views/front/MyFeedback.vue'),
         },
       ],
     },

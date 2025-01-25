@@ -67,7 +67,7 @@ const navTo = (url) => {
   }, 300)
 }
 
-//取消浏览记录的函数
+//删除浏览记录的函数
 const del = (id) => {
   request.delete('/history/delete/' + id).then(res => {
     if (res.code === '200') {

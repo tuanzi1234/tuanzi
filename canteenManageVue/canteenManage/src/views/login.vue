@@ -151,7 +151,7 @@ const login = () => {
           }, 500)
         } else {
           // 登录失败，弹出提示框
-          ElMessage.error(res.msg)
+          ElMessage.error('用户名或密码错误，登录失败')
         }
       }
       )

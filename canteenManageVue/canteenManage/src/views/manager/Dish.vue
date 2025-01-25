@@ -53,7 +53,7 @@
             <el-tag v-if="scope.row.status === '下架'" type="danger">{{ scope.row.status }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="180" fixed="right">
+        <el-table-column label="操作" width="180" >
           <template v-slot="scope">
             <el-button type="primary" circle :icon="Edit" @click="handleEdit(scope.row)"></el-button>
             <el-button type="danger" circle :icon="Delete" @click="del(scope.row)"></el-button>
@@ -122,7 +122,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 
 const baseUrl = import.meta.env.VITE_BASE_URL
 
-// 声明响应式公告表单数据的函数
+// 声明响应式菜品表单数据的函数
 const data = reactive({
   categoryId: '',// 菜品分类id，初始设置为空字符串
   categoryData: [],// 菜品分类数据，初始为空数组
@@ -266,7 +266,7 @@ const delBatch = () => {
     })
   })
 }
-// 处理头像上传成功的函数
+// 处理封面上传成功的函数
 const handleImgSuccess = (res) => {
   data.form.img = res.data
   ElMessage.success('文件上传成功，点击“确定”即可查看')

@@ -1,7 +1,7 @@
 package com.example.entity;
 
 
-//公告信息
+//菜品种类信息
 public class Category {
     private Integer id;
     private String title;

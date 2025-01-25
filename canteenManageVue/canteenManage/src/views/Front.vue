@@ -13,7 +13,8 @@
         <el-menu-item index="/front/home">首页</el-menu-item>
         <el-menu-item index="/front/">我的点单</el-menu-item>
         <el-menu-item index="/front/">我的订单</el-menu-item>
-        <el-menu-item index="/front/">反馈意见</el-menu-item>
+        <el-menu-item index="/front/">食堂资讯</el-menu-item>
+        <el-menu-item index="/front/feedback">反馈意见</el-menu-item>
         <el-menu-item index="/front/Notice">系统公告</el-menu-item>
       </el-menu>
     </div>
@@ -37,6 +38,9 @@
             <el-dropdown-menu>
               <el-dropdown-item @click="$router.push('/front/person')">个人中心</el-dropdown-item>
               <el-dropdown-item @click="$router.push('/front/history')">历史浏览</el-dropdown-item>
+              <el-dropdown-item @click="$router.push('/front/praise')">我赞过的</el-dropdown-item>
+              <el-dropdown-item @click="$router.push('/front/collect')">我的收藏</el-dropdown-item>
+              <el-dropdown-item @click="$router.push('/front/myFeedback')">我的反馈</el-dropdown-item>
               <el-dropdown-item @click="$router.push('/front/password')">修改密码</el-dropdown-item>
               <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>

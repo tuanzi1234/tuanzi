@@ -1,7 +1,7 @@
 package com.example.entity;
 
 
-//管理员信息
+//学生信息
 public class Student extends Account {
     private Integer id;
     private String username;

@@ -21,7 +21,7 @@
         <el-table-column prop="title" label="公告标题" />
         <el-table-column prop="content" label="公告内容" />
         <el-table-column prop="time" label="发布时间" />
-        <el-table-column label="操作" width="180" fixed="right">
+        <el-table-column label="操作" width="180" >
           <template v-slot="scope">
             <el-button type="primary" circle :icon="Edit" @click="handleEdit(scope.row)"></el-button>
             <el-button type="danger" circle :icon="Delete" @click="del(scope.row)"></el-button>

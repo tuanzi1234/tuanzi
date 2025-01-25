@@ -1,7 +1,7 @@
 package com.example.entity;
 
 
-//公告信息
+//轮播图信息
 public class Sideshow {
     private Integer id;
     private String name;

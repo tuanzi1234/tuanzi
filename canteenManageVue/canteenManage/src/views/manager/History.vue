@@ -32,7 +32,7 @@
           </template>
           </el-table-column>
         <el-table-column prop="time" label="浏览时间" />
-        <el-table-column label="操作" width="180" fixed="right">
+        <el-table-column label="操作" width="180" >
           <template v-slot="scope">
             <el-button type="danger" circle :icon="Delete" @click="del(scope.row)"></el-button>
           </template>

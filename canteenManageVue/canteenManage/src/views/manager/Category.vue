@@ -18,7 +18,7 @@
         <el-table-column type="selection" width="55" header-align="center" align="center" />
         <el-table-column prop="title" label="分类名称" />
         <el-table-column prop="content" label="分类描述" />
-        <el-table-column label="操作" width="180" fixed="right">
+        <el-table-column label="操作" width="180" >
           <template v-slot="scope">
             <el-button type="primary" circle :icon="Edit" @click="handleEdit(scope.row)"></el-button>
             <el-button type="danger" circle :icon="Delete" @click="del(scope.row)"></el-button>

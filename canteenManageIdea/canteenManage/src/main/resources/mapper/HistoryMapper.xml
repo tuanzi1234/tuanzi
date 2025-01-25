@@ -15,7 +15,7 @@
     </select>
 
 
-    <!-- insert into history (username, password, ...) values ('history', 'history', ...) -->
+    <!-- insert into history (...) values ('history', 'history', ...) -->
     <insert id="insert" parameterType="com.example.entity.History" useGeneratedKeys="true">
         insert into `history`
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -1,7 +1,7 @@
 package com.example.entity;
 
 
-//公告信息
+//历史记录信息
 public class History {
     private Integer id;
     private Integer studentId;
