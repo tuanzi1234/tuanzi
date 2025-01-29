@@ -1,28 +1,25 @@
 package com.example.mapper;
 
-import com.example.entity.Notice;
+import com.example.entity.Search;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface NoticeMapper {
+public interface SearchMapper {
 
-    // 根据id查询系统公告
-    @Select("select * from `notice` where id = #{id}")
-    Notice selectById(Integer id);
+    // 根据id查询搜索信息
+    @Select("select * from `search` where id = #{id}")
+    Search selectById(Integer id);
 
-    // 查询所有系统公告
-    List<Notice> selectAll(Notice notice);
+    // 查询所有搜索信息
+    List<Search> selectAll(Search search);
 
-    // 添加系统公告
-    void insert(Notice notice);
+    // 添加搜索信息
+    void insert(Search search);
 
-    // 根据id修改系统公告
-    void updateById(Notice notice);
-
-    // 根据id删除单个系统公告
-    @Delete("delete from `notice` where id = #{id}")
+    // 根据id删除单个搜索信息
+    @Delete("delete from `search` where id = #{id}")
     void deleteById(Integer id);
 
 

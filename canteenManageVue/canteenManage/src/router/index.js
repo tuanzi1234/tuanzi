@@ -106,6 +106,18 @@ const router = createRouter({
           meta:{name: '食堂资讯管理'},
           component: () => import('@/views/manager/Information.vue'),
         },
+         //定义管理学生点单的子路由
+         {
+          path: 'dishItem',
+          meta:{name: '食堂点单管理'},
+          component: () => import('@/views/manager/DishItem.vue'),
+        },
+        //定义管理学生订单的子路由
+        {
+          path: 'orders',
+          meta:{name: '食堂订单管理'},
+          component: () => import('@/views/manager/Orders.vue'),
+        },
       ],
     },
     // 定义路径为前台的路由
@@ -171,6 +183,36 @@ const router = createRouter({
           path: 'myFeedback',
           meta:{name: '我的意见反馈'},
           component: () => import('@/views/front/MyFeedback.vue'),
+        },
+        //定义前台食堂资讯的子路由
+        {
+          path: 'information',
+          meta:{name: '食堂资讯'},
+          component: () => import('@/views/front/Information.vue'),
+        },
+        //定义前台食堂资讯详情的子路由
+        {
+          path: 'informationDetail',
+          meta:{name: '食堂资讯详情'},
+          component: () => import('@/views/front/InformationDetail.vue'),
+        },
+        //定义前台点单信息的子路由
+        {
+          path: 'dishItem',
+          meta:{name: '点单信息'},
+          component: () => import('@/views/front/DishItem.vue'),
+        },
+        //定义前台订单信息的子路由
+        {
+          path: 'orders',
+          meta:{name: '订单信息'},
+          component: () => import('@/views/front/Orders.vue'),
+        },
+        //定义前台搜索的子路由
+        {
+          path: 'search',
+          meta:{name: '搜索'},
+          component: () => import('@/views/front/Search.vue'),
         },
       ],
     },

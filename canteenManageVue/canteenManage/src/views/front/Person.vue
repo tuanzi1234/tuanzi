@@ -39,7 +39,9 @@
               <el-radio-button label="支付宝" value="支付宝" />
               <el-radio-button label="微信" value="微信" />
             </el-radio-group>
-            此处仅作演示
+            <div>
+              支付功能需要营业执照,故此处仅作演示
+            </div>
           </div>
         </el-form-item>
       </el-form>

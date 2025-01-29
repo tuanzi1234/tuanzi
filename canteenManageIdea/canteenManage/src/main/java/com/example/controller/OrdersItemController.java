@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.common.Result;
-import com.example.entity.Notice;
-import com.example.service.NoticeService;
+import com.example.entity.OrdersItem;
+import com.example.service.OrdersItemService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -10,60 +10,60 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notice")
-public class NoticeController {
+@RequestMapping("/ordersItem")
+public class OrdersItemController {
 
     @Resource
-    private NoticeService noticeService;
+    private OrdersItemService ordersItemService;
 
-    //添加系统公告
-    @PostMapping("/add")// 通过POST请求接收一个Notice对象，将其添加到系统中
-    public Result add(@RequestBody Notice notice){
-        noticeService.add(notice);// 调用NoticeService的add方法来添加系统公告
-        return Result.success();// 返回成功结果，表示系统公告添加成功
+    //添加订单详细信息
+    @PostMapping("/add")// 通过POST请求接收一个OrdersItem对象，将其添加到系统中
+    public Result add(@RequestBody OrdersItem ordersItem){
+        ordersItemService.add(ordersItem);// 调用OrdersItemService的add方法来添加订单详细信息
+        return Result.success();// 返回成功结果，表示订单详细信息添加成功
     }
 
-    //修改系统公告
+    //修改订单详细信息
     @PutMapping("/update")
-    public Result update(@RequestBody Notice notice){
-        noticeService.updateById(notice);
+    public Result update(@RequestBody OrdersItem ordersItem){
+        ordersItemService.updateById(ordersItem);
         return Result.success();
     }
 
-    //删除单个系统公告
+    //删除单个订单详细信息
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Integer id){
-        noticeService.deleteById(id);
+        ordersItemService.deleteById(id);
         return Result.success();
     }
 
-    //批量删除系统公告
+    //批量删除订单详细信息
     @DeleteMapping("/delete/batch")
     public Result delete(@RequestBody List<Integer> ids){
-        noticeService.deleteBatch(ids);
+        ordersItemService.deleteBatch(ids);
         return Result.success();
     }
 
-    //查询所有系统公告
+    //查询所有订单详细信息
     @GetMapping("/selectAll")
-    public Result selectAll(Notice notice){
-        List<Notice> list = noticeService.selectAll(notice);
+    public Result selectAll(OrdersItem ordersItem){
+        List<OrdersItem> list = ordersItemService.selectAll(ordersItem);
         return Result.success(list);
     }
 
-    //根据id查询系统公告
+    //根据id查询订单详细信息
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id){
-        Notice notice = noticeService.selectById(id);
-        return Result.success(notice);
+        OrdersItem ordersItem = ordersItemService.selectById(id);
+        return Result.success(ordersItem);
     }
 
-    //分页查询系统公告
+    //分页查询订单详细信息
     @GetMapping("/selectPage")
-    public Result selectPage(Notice notice,
+    public Result selectPage(OrdersItem ordersItem,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageInfo<Notice> pageInfo  = noticeService.selectPage(notice, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的系统公告信息列表
+        PageInfo<OrdersItem> pageInfo  = ordersItemService.selectPage(ordersItem, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的订单详细信息信息列表
         return Result.success(pageInfo);
     }
 

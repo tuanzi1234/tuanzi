@@ -2,11 +2,17 @@ package com.example.entity;
 
 
 //公告信息
-public class Notice {
+public class Orders {
     private Integer id;
-    private String title;
-    private String content;
-    private String time;
+    private Integer studentId;
+    private String orderNo;
+    private String createTime;
+    private String payTime;
+    private String payNo;
+    private String payType;
+    private Double price;
+    private String status;
+    private String studentName;
 
     public Integer getId() {
         return id;
@@ -16,27 +22,75 @@ public class Notice {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
-    public String getContent() {
-        return content;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
-    public String getTime() {
-        return time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime;
+    }
+
+    public String getPayNo() {
+        return payNo;
+    }
+
+    public void setPayNo(String payNo) {
+        this.payNo = payNo;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }

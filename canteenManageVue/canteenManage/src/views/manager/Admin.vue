@@ -95,6 +95,20 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 
 const baseUrl = import.meta.env.VITE_BASE_URL
 
+// 自定义验证函数
+const validateUsername = (rule, value, callback) => {
+  if (value === '') {
+    callback(new Error('请输入账号'))
+  } else {
+    const isDuplicate = data.tableData.some(admin => admin.username === value && admin.id !== data.editingId)
+    if (isDuplicate) {
+      callback(new Error('该账号已存在，请重新输入'))
+    } else {
+      callback()
+    }
+  }
+}
+
 // 管理员表单数据
 const data = reactive({
   formVisible: false,// 控制表单的可见状态，初始设置为不可见
@@ -106,9 +120,11 @@ const data = reactive({
   name: null,// 查询条件:姓名，初始设置为null
   username: null,// 查询条件:账号，初始设置为null
   ids: [],// 选中的id，初始设置为空数组
+  editingId: null, // 用于记录当前正在编辑的用户的 id
   rules: {
     username: [
       { required: true, message: '请输入账号', trigger: 'blur' },
+      { validator: validateUsername, trigger: 'blur' }, // 添加自定义验证规则
     ],
     name: [
       { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -121,6 +137,7 @@ const formRef = ref()
 // 点击新增按钮时触发的函数
 const handleAdd = () => {
   data.form = {} // 初始化表单数据，清空之前的数据
+  data.editingId = null // 新增时清空 editingId
   data.formVisible = true// 点击新增按钮时，将表单的可见状态设置为true，显示表单
 }
 // 新增管理员信息的函数
@@ -138,6 +155,7 @@ const add = () => {
 //编辑管理员信息的函数
 const handleEdit = (row) => {
   data.form = JSON.parse(JSON.stringify(row))// 将要编辑的管理员信息赋值给表单数据对象
+  data.editingId = row.id // 编辑时设置 editingId 为当前编辑用户的 id
   data.formVisible = true// 将表单的可见状态设置为true，显示表单
 }
 //处理选中行变化的函数 rows --> 当前选中的行数据数组
@@ -155,8 +173,8 @@ const load = () => {
     }
   }).then(res => {
     if (res.code === '200') {
-      data.tableData = res.data?.list || []// 将从后端获取到的管理员信息列表赋值给表格数据对象  
-      data.total = res.data?.total// 将从后端获取到的总条数赋值给总条数对象
+      data.tableData = res.data?.list || [] // 将从后端获取到的管理员信息列表赋值给表格数据对象  
+      data.total = res.data?.total // 将从后端获取到的总条数赋值给总条数对象
     } else {
       ElMessage.error(res.msg)
     }

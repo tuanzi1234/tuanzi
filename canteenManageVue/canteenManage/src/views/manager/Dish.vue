@@ -84,8 +84,8 @@
         <el-form-item prop="price" label="菜品价格">
           <el-input v-model="data.form.price" placeholder="请输入菜品价格"></el-input>
         </el-form-item>
-        <el-form-item prop="num" label="剩余份数">
-          <el-input v-model="data.form.num" placeholder="请输入菜品剩余份数"></el-input>
+        <el-form-item prop="num" label="库存">
+          <el-input v-model="data.form.num" placeholder="请输入菜品库存"></el-input>
         </el-form-item>
         <el-form-item prop="img" label="菜品封面">
           <el-upload class="upload-demo" :action="baseUrl + '/files/upload'" :on-success="handleImgSuccess"

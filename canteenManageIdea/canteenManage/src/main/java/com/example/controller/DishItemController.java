@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.common.Result;
-import com.example.entity.Notice;
-import com.example.service.NoticeService;
+import com.example.entity.DishItem;
+import com.example.service.DishItemService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -10,60 +10,61 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notice")
-public class NoticeController {
+@RequestMapping("/dishItem")
+public class DishItemController {
 
     @Resource
-    private NoticeService noticeService;
+    private DishItemService dishItemService;
 
-    //添加系统公告
-    @PostMapping("/add")// 通过POST请求接收一个Notice对象，将其添加到系统中
-    public Result add(@RequestBody Notice notice){
-        noticeService.add(notice);// 调用NoticeService的add方法来添加系统公告
-        return Result.success();// 返回成功结果，表示系统公告添加成功
+
+    //添加点单信息
+    @PostMapping("/add")// 通过POST请求接收一个DishItem对象，将其添加到系统中
+    public Result add(@RequestBody DishItem dishItem){
+        dishItemService.add(dishItem);// 调用DishItemService的add方法来添加点单信息
+        return Result.success();// 返回成功结果，表示点单信息添加成功
     }
 
-    //修改系统公告
+    //修改点单信息
     @PutMapping("/update")
-    public Result update(@RequestBody Notice notice){
-        noticeService.updateById(notice);
+    public Result update(@RequestBody DishItem dishItem){
+        dishItemService.updateById(dishItem);
         return Result.success();
     }
 
-    //删除单个系统公告
+    //删除单个点单信息
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Integer id){
-        noticeService.deleteById(id);
+        dishItemService.deleteById(id);
         return Result.success();
     }
 
-    //批量删除系统公告
+    //批量删除点单信息
     @DeleteMapping("/delete/batch")
     public Result delete(@RequestBody List<Integer> ids){
-        noticeService.deleteBatch(ids);
+        dishItemService.deleteBatch(ids);
         return Result.success();
     }
 
-    //查询所有系统公告
+    //查询所有点单信息
     @GetMapping("/selectAll")
-    public Result selectAll(Notice notice){
-        List<Notice> list = noticeService.selectAll(notice);
+    public Result selectAll(DishItem dishItem){
+        List<DishItem> list = dishItemService.selectAll(dishItem);
         return Result.success(list);
     }
 
-    //根据id查询系统公告
+    //根据id查询点单信息
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id){
-        Notice notice = noticeService.selectById(id);
-        return Result.success(notice);
+        DishItem dishItem = dishItemService.selectById(id);
+        return Result.success(dishItem);
     }
 
-    //分页查询系统公告
+    //分页查询点单信息
     @GetMapping("/selectPage")
-    public Result selectPage(Notice notice,
+    public Result selectPage(DishItem dishItem,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageInfo<Notice> pageInfo  = noticeService.selectPage(notice, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的系统公告信息列表
+        PageInfo<DishItem> pageInfo  = dishItemService.selectPage(dishItem, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的点单信息信息列表
         return Result.success(pageInfo);
     }
 

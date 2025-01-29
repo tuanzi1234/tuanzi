@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.common.Result;
-import com.example.entity.Notice;
-import com.example.service.NoticeService;
+import com.example.entity.Search;
+import com.example.service.SearchService;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -10,60 +10,55 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notice")
-public class NoticeController {
+@RequestMapping("/search")
+public class SearchController {
 
     @Resource
-    private NoticeService noticeService;
+    private SearchService searchService;
 
-    //添加系统公告
-    @PostMapping("/add")// 通过POST请求接收一个Notice对象，将其添加到系统中
-    public Result add(@RequestBody Notice notice){
-        noticeService.add(notice);// 调用NoticeService的add方法来添加系统公告
-        return Result.success();// 返回成功结果，表示系统公告添加成功
+    //添加搜索信息
+    @PostMapping("/add")// 通过POST请求接收一个Search对象，将其添加到系统中
+    public Result add(@RequestBody Search search){
+        searchService.add(search);// 调用SearchService的add方法来添加搜索信息
+        return Result.success();// 返回成功结果，表示搜索信息添加成功
     }
 
-    //修改系统公告
-    @PutMapping("/update")
-    public Result update(@RequestBody Notice notice){
-        noticeService.updateById(notice);
-        return Result.success();
-    }
+   
 
-    //删除单个系统公告
+    //删除单个搜索信息
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Integer id){
-        noticeService.deleteById(id);
+        searchService.deleteById(id);
         return Result.success();
     }
 
-    //批量删除系统公告
+    //批量删除搜索信息
     @DeleteMapping("/delete/batch")
     public Result delete(@RequestBody List<Integer> ids){
-        noticeService.deleteBatch(ids);
+        searchService.deleteBatch(ids);
         return Result.success();
     }
 
-    //查询所有系统公告
+    //查询所有搜索信息
     @GetMapping("/selectAll")
-    public Result selectAll(Notice notice){
-        List<Notice> list = noticeService.selectAll(notice);
+    public Result selectAll(Search search){
+        List<Search> list = searchService.selectAll(search);
         return Result.success(list);
     }
 
-    //根据id查询系统公告
+    //根据id查询搜索信息
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id){
-        Notice notice = noticeService.selectById(id);
-        return Result.success(notice);
+        Search search = searchService.selectById(id);
+        return Result.success(search);
     }
 
-    //分页查询系统公告
+    //分页查询搜索信息
     @GetMapping("/selectPage")
-    public Result selectPage(Notice notice,
+    public Result selectPage(Search search,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageInfo<Notice> pageInfo  = noticeService.selectPage(notice, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的系统公告信息列表
+        PageInfo<Search> pageInfo  = searchService.selectPage(search, pageNum, pageSize);// 调用分页查询方法，获取指定页码和页大小的搜索信息信息列表
         return Result.success(pageInfo);
     }
 

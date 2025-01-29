@@ -10,6 +10,7 @@ public class Information {
     private String img;
     private String username;
     private Integer num;
+    private String avatar;
 
     public Integer getId() {
         return id;
@@ -65,5 +66,13 @@ public class Information {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

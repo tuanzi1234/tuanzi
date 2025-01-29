@@ -1,7 +1,7 @@
 <template>
   <div style="width: 60%; margin: 20px auto; min-height: 800px;">
     <div style="display: flex; grid-gap: 15px">
-      <div class="card" style="flex: 1;">
+      <div class="card" style="flex: 1; display: flex; align-items: center;">
         <img :src="data.dishData.img" alt="" style="width: 100%; height: 300px; border-radius: 5px;">
       </div>
       <div class="card" style="flex: 1; padding: 10px 20px;">
@@ -28,17 +28,32 @@
             <div v-else style="margin-left: 5px; font-size: 20px;">{{ data.collectNum }}</div>
         </div>
         <div style="margin-top: 20px; text-align: center;">
-          <el-button type="info" style="padding: 20px 30px; font-size: 15px; ">我想吃</el-button>
+          <el-button @click="myLike" type="info" style="padding: 20px 30px; font-size: 15px; ">我想吃</el-button>
         </div>
       </div>
     </div>
-    <div></div>
+    <!----------------- 新增点单信息的弹窗 ------------------>
+    <el-dialog title="选择点单数量" v-model="data.formVisible" width="30%">
+      <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding: 20px;">
+        <el-form-item prop="num" label="份数">
+          <el-input-number v-model="data.form.num" :min="1"  :max="data.dishData.num" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="data.formVisible = false">取消</el-button>
+          <el-button type="primary" @click="save">
+            确定
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, formContextKey } from 'element-plus'
 import request from '@/utils/request'
 import router from '@/router'
 
@@ -52,6 +67,8 @@ const data = reactive({
   isPraise: false,
   collectNum: 0,
   isCollect: false,
+  form: {},
+  formVisible: false,
 })
 
 //加载菜品信息数据的函数
@@ -154,6 +171,26 @@ const loadCollectNum = () => {
   })
 }
 loadCollectNum()
+
+//点击“我想吃”的函数
+const myLike = () => {
+  data.form.dishId = data.dishId
+  data.form.studentId = data.user.id
+  data.form.num = 1
+  data.formVisible = true
+}
+//点击”确定“的函数
+const save = () => {
+  request.post('/dishItem/add', data.form).then(res => {
+    if (res.code === '200') {
+      ElMessage.success('点单成功')
+      data.formVisible = false
+      loadDish()
+    } else {
+      ElMessage.error(res.msg)
+    } 
+  })
+}
 </script>
 
 <style scoped></style>

@@ -9,6 +9,7 @@ public class DishItem {
     private Integer num;
     private Dish dish;
     private String studentName;
+    private String dishName;
 
     public Integer getId() {
         return id;
@@ -56,5 +57,13 @@ public class DishItem {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 }

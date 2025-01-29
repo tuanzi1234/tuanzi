@@ -1,6 +1,7 @@
 package com.example.service;
 
-import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.example.entity.Search;
 import com.example.mapper.SearchMapper;
 import com.github.pagehelper.PageHelper;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SesrchService {
+public class SearchService {
 
     @Resource
     private SearchMapper searchMapper;// 注入SearchMapper，用于数据库操作
@@ -35,6 +36,12 @@ public class SesrchService {
 
     // 添加搜索信息
     public void add(Search search) {
+        //添加之前查询是否有相同的搜索信息，如果有删掉原来的记录，再添加新记录，如果没有则添加
+        List<Search> searches = searchMapper.selectAll(search);
+        if (CollectionUtil.isNotEmpty(searches)) {
+            Search dbSearch = searches.get(0);
+            deleteById(dbSearch.getId());
+        }
         searchMapper.insert(search);// 调用mapper层添加搜索信息
     }
 

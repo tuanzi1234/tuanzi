@@ -11,12 +11,18 @@
     <div class="front-header-center">
       <el-menu class="front-header-center-menu" :default-active="router.currentRoute.value.path" router mode="horizontal" >
         <el-menu-item index="/front/home">首页</el-menu-item>
-        <el-menu-item index="/front/">我的点单</el-menu-item>
-        <el-menu-item index="/front/">我的订单</el-menu-item>
-        <el-menu-item index="/front/">食堂资讯</el-menu-item>
+        <el-menu-item index="/front/dishItem">我的点单</el-menu-item>
+        <el-menu-item index="/front/orders">我的订单</el-menu-item>
+        <el-menu-item index="/front/information">食堂资讯</el-menu-item>
         <el-menu-item index="/front/feedback">反馈意见</el-menu-item>
         <el-menu-item index="/front/Notice">系统公告</el-menu-item>
       </el-menu>
+    </div>
+    <!------------------------------------- 搜索栏 ---------------------------------------->
+    <div style="width: 500px;">
+      <el-input v-model="data.name" prefix-icon="Search" style="width:240px; margin-right: 10px;"
+        placeholder="请输入菜品名称"></el-input>
+      <el-button @click="navTo('/front/search?name=' + data.name)">搜索</el-button>
     </div>
     <!---------------------- 个人信息/下拉菜单/登录注册 ------------------------->
     <div class="front-header-right">
@@ -64,6 +70,7 @@ const data = reactive({
   user: JSON.parse(localStorage.getItem('project-user')) || '{}',
   top: null,
   noticeData: [],
+  name: null,
 })
 // 在前端同步更新用户信息的函数
 const updateUser = () => {
@@ -97,6 +104,15 @@ const logout = () => {
   setInterval(() => {
     location.href = '/login'
   }, 500)
+}
+
+//搜索功能跳转页面的函数
+const navTo = (url) => {
+  if (!data.name) {
+    ElMessage.error('请输入搜索内容')
+    return 
+  }
+  location.href = url
 }
 </script>
 

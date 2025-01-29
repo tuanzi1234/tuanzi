@@ -1,12 +1,10 @@
 package com.example.entity;
 
 
-//公告信息
-public class Notice {
+//搜索信息
+public class Search {
     private Integer id;
-    private String title;
-    private String content;
-    private String time;
+    private String name;
 
     public Integer getId() {
         return id;
@@ -16,27 +14,11 @@ public class Notice {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -2,11 +2,17 @@ package com.example.entity;
 
 
 //公告信息
-public class Notice {
+public class OrdersItem {
     private Integer id;
-    private String title;
-    private String content;
-    private String time;
+    private Integer dishId;
+    private Integer num;
+    private Integer score;
+    private String comment;
+    private Integer studentId;
+    private Integer orderId;
+    private Dish dish;
+    private String studentName;
+    private String studentAvatar;
 
     public Integer getId() {
         return id;
@@ -16,27 +22,75 @@ public class Notice {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getDishId() {
+        return dishId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDishId(Integer dishId) {
+        this.dishId = dishId;
     }
 
-    public String getContent() {
-        return content;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
-    public String getTime() {
-        return time;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getStudentAvatar() {
+        return studentAvatar;
+    }
+
+    public void setStudentAvatar(String studentAvatar) {
+        this.studentAvatar = studentAvatar;
     }
 }
