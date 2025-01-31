@@ -42,9 +42,10 @@
       </div>
       <div class="card" id="line" style="flex: 1;"></div>
     </div>
-    <div style="margin-top: 10px; display: flex; grid-gap: 10px;">
-      <div class="card" id="pie1" style="height: 400px; flex: 1;"></div>
-      <div class="card" id="pie2" style="height: 400px; flex: 1"></div>
+    <div style="margin-top: 10px; display: flex; grid-gap: 20px; ">
+      <div class="card" id="pie1" style="height: 400px; width: 30%;"></div>
+      <div class="card" id="pie2" style="height: 400px; width: 40%;"></div>
+      <div class="card" id="pie3" style="height: 400px; width: 30%"></div>
     </div>
   </div>
 </template>
@@ -123,6 +124,20 @@ const loadPie2 = () => {
   })
 }
 loadPie2()
+// 加载饼图3：材料库存饼状图
+const loadPie3 = () => {
+  request.get('/statistics/pie3').then(res => {
+    if (res.code === '200') {
+      let chartDom = document.getElementById('pie3');
+      let myChart = echarts.init(chartDom);
+      pie3Options.series[0].data = res.data;
+      myChart.setOption( pie3Options);
+    }else {
+      ElMessage.error(res.msg) 
+    }
+  })
+}
+loadPie3()
 // 平滑折线图：近一周销售额趋势图
 let lineOptions = {
   title: {
@@ -207,6 +222,37 @@ let pie2Options = {
   title: {
     text: '学生常点的菜品统计', // 主标题
     subtext: '统计维度：菜品名称', // 副标题
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: [
+    {
+      name: '数量占比', // 鼠标移上去显示内容
+      type: 'pie',
+      radius: '50%',
+      center: ['50%', '60%'],
+      data: [
+        {value: 1048, name: '瑞幸咖啡'}, // 示例数据：name表示维度，value表示对应的值
+        {value: 735, name: '雀巢咖啡'},
+        {value: 580, name: '星巴克咖啡'},
+        {value: 484, name: '栖巢咖啡'},
+        {value: 300, name: '小武哥咖啡'}
+      ]
+    }
+  ]
+}
+// 饼图3：材料库存饼状图
+let pie3Options = {
+  title: {
+    text: '材料库存饼状图', // 主标题
+    subtext: '统计维度：材料名称', // 副标题
     left: 'center'
   },
   tooltip: {

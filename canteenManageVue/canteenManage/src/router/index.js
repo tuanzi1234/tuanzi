@@ -124,6 +124,12 @@ const router = createRouter({
           meta:{name: '学生评价管理'},
           component: () => import('@/views/manager/Comment.vue'),
         },
+        //定义管理食堂库存的子路由
+        {
+          path: 'warehouse',
+          meta:{name: '食堂库存管理'},
+          component: () => import('@/views/manager/Warehouse.vue'),
+        },
       ],
     },
     // 定义路径为前台的路由

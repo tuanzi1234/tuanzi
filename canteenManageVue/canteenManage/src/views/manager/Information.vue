@@ -122,6 +122,9 @@ const data = reactive({
     content: [
       { required: true, message: '请输入资讯内容', trigger: 'blur' },
     ],
+    img: [
+      { required: true, message: '请传入资讯封面', trigger: 'blur' }, 
+    ]
   },
 }
 )

@@ -30,6 +30,8 @@ public class StatisticsController {
     private CategoryService categoryService;
     @Resource
     private OrdersItemService ordersItemService;
+    @Resource
+    private WarehouseService warehouseService;
 
     // 统计数据
     @GetMapping("/base")
@@ -127,7 +129,7 @@ public class StatisticsController {
         // 初始化一个空的列表，用于存储最终处理后的结果
         List<Map<String, Object>> list = new ArrayList<>();
 
-        // 获取所有菜品项，这里使用空的DishItem对象作为参数调用selectAll方法，可能为了获取默认查询条件下的所有菜品项
+        // 获取所有菜品项，这里使用空的DishItem对象作为参数调用selectAll方法，为了获取默认查询条件下的所有菜品项
         List<OrdersItem> ordersItems = ordersItemService.selectAll(new OrdersItem());
 
         // 使用Stream API对菜品项进行分组和求和，结果存储在Map中，键为菜品ID，值为该菜品的总数量
@@ -146,6 +148,41 @@ public class StatisticsController {
                 // 将菜品名称和总数量放入Map中
                 map.put("name", dish.getName());
                 map.put("value", collect.get(dishId));
+
+                // 将处理后的Map添加到结果列表中
+                list.add(map);
+            }
+        }
+
+        // 返回成功结果，包含处理后的列表
+        return Result.success(list);
+    }
+    // 饼图2：正在点餐的菜品统计占比饼状图
+    @GetMapping("/pie3")
+    public Result pie3() {
+
+        // 初始化一个空的列表，用于存储最终处理后的结果
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        // 获取所有仓库信息，使用空的Ware对象作为参数调用selectAll方法，获取默认查询条件下的所有菜品项
+        List<Warehouse> warehouses = warehouseService.selectAll(new Warehouse());
+
+        // 使用Stream API对仓库信息进行分组和求和，结果存储在Map中，键为仓库ID，值为该菜品的总数量
+        Map<Integer, Integer> collect = warehouses.stream().collect(Collectors.groupingBy(Warehouse::getId, Collectors.reducing(0, Warehouse::getNum, Integer::sum)));
+
+        // 遍历分组后的Map，处理每个仓库材料的总数量
+        for (Integer num : collect.keySet()) {
+            // 初始化一个HashMap，用于存储库存材料名称和对应的总数量
+            Map<String, Object> map = new HashMap<>();
+
+            // 根据菜品ID查询菜品信息
+            Warehouse warehouse = warehouseService.selectById(num);
+
+            // 检查查询到的库存是否不为空
+            if (ObjectUtil.isNotEmpty(warehouse)) {
+                // 将库存材料名称和总数量放入Map中
+                map.put("name", warehouse.getName());
+                map.put("value", collect.get(num));
 
                 // 将处理后的Map添加到结果列表中
                 list.add(map);

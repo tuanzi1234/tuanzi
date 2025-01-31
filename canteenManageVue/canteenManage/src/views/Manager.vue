@@ -65,6 +65,7 @@
             <el-menu-item index="/manager/feedback">反馈意见管理</el-menu-item>
             <el-menu-item index="/manager/collect">收藏记录管理</el-menu-item>
             <el-menu-item index="/manager/information">食堂资讯管理</el-menu-item>
+            <el-menu-item index="/manager/warehouse">食堂库存管理</el-menu-item>
             <el-menu-item index="/manager/dishItem">学生点单管理</el-menu-item>
             <el-menu-item index="/manager/orders">学生订单管理</el-menu-item>
             <el-menu-item index="/manager/comment">学生评价管理</el-menu-item>

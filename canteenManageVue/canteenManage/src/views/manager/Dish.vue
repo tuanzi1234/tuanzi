@@ -152,6 +152,9 @@ const data = reactive({
     num: [
       { required: true, message: '请输入菜品剩余份数', trigger: 'blur' },
     ],
+    img: [
+      { required: true, message: '请上传菜品封面', trigger: 'blur' }, 
+    ]
   },
 }
 )

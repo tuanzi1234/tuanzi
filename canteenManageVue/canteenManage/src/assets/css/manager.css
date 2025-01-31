@@ -127,7 +127,7 @@
 
 /* 定义二级菜单标题栏的样式 */
 :deep(.el-sub-menu__title) {
-  height: 50px !important;
+  height: 35px !important;
   line-height: 50px !important;
   background-color: #F5F5F5 !important;
 }
