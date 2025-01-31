@@ -10,9 +10,12 @@ public class OrdersItem {
     private String comment;
     private Integer studentId;
     private Integer orderId;
+    private String time;
     private Dish dish;
+    private String orderNo;
     private String studentName;
     private String studentAvatar;
+    private String dishName;
 
     public Integer getId() {
         return id;
@@ -92,5 +95,29 @@ public class OrdersItem {
 
     public void setStudentAvatar(String studentAvatar) {
         this.studentAvatar = studentAvatar;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 }

@@ -4,10 +4,15 @@
 <mapper namespace="com.example.mapper.OrdersItemMapper">
 
     <select id="selectAll" resultType="com.example.entity.OrdersItem">
-        select orders_item.*, student.name as studentName, student.avatar as studentAvatar from `orders_item`
+        select orders_item.*, student.name as studentName, student.avatar as studentAvatar, orders.order_no as orderNo from `orders_item`
         left join student on orders_item.student_id = student.id
+        left join orders on orders_item.order_id = orders.id
+        left join dish on orders_item.dish_id = dish.id
         <where>
             <if test="orderId != null"> and orders_item.order_id = #{orderId}</if>
+            <if test="dishId != null"> and orders_item.dish_id = #{dishId}</if>
+            <if test="orderNo != null"> and orders.order_no = #{orderNo}</if>
+            <if test="dishName != null"> and dish.name like concat('%', #{dishName}, '%') </if>
         </where>
     </select>
 
@@ -37,6 +42,9 @@
             </if>
             <if test="comment != null">
                 comment = #{comment},
+            </if>
+            <if test="time != null">
+                time = #{time},
             </if>
         </set>
         where id = #{id}

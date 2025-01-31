@@ -1,18 +1,18 @@
 <template>
   <div>
-    <!----------- 查询系统公告信息 ----------->
+    <!----------- 查询轮播图信息 ----------->
     <div class="card">
-      <el-input v-model="data.title" prefix-icon="Search" style="width:240px; margin-right: 10px;"
+      <el-input v-model="data.name" prefix-icon="Search" style="width:240px; margin-right: 10px;"
         placeholder="请输入轮播图名称"></el-input>
       <el-button type="info" plain @click="load">查询</el-button>
       <el-button type="info" style="margin: 0 10px;" plain @click="reset">重置</el-button>
     </div>
-    <!----------------- 新增系统公告信息 ------------------>
+    <!----------------- 新增轮播图信息 ------------------>
     <div class="card" style="margin-bottom: 10px;">
       <el-button type="primary" plain @click="handleAdd">新增</el-button>
       <el-button type="danger" plain @click="delBatch">批量删除</el-button>
     </div>
-    <!----------------- 系统公告信息列表 ------------------>
+    <!----------------- 轮播图信息列表 ------------------>
     <div class="card" style="margin-bottom: 10px;">
       <el-table stripe :data="data.tableData" border style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" header-align="center" align="center" />
@@ -87,7 +87,6 @@ const data = reactive({
   pageSize: 10,// 每页显示的条数，初始设置为10
   total: 0,// 总条数，初始设置为0
   name: null,// 查询条件:标题，初始设置为null
-  content: null,// 查询条件:内容，初始设置为null
   ids: [],// 选中的id，初始设置为空数组
   rules: {
     name: [
@@ -111,34 +110,33 @@ const add = () => {
   request.post('/sideshow/add', data.form).then(res => {
     if (res.code === '200') {
       ElMessage.success('添加成功')
-      load()// 新增成功后，重新加载系统公告信息列表
+      load()// 新增成功后，重新加载轮播图信息列表
       data.formVisible = false// 新增成功后，将表单的可见状态设置为false，隐藏表单
     } else {
       ElMessage.error(res.msg)
     }
   })
 }
-//编辑系统公告信息的函数
+//编辑轮播图信息的函数
 const handleEdit = (row) => {
-  data.form = JSON.parse(JSON.stringify(row))// 将要编辑的系统公告信息赋值给表单数据对象
+  data.form = JSON.parse(JSON.stringify(row))// 将要编辑的轮播图信息赋值给表单数据对象
   data.formVisible = true// 将表单的可见状态设置为true，显示表单
 }
 //处理选中行变化的函数 rows --> 当前选中的行数据数组
 const handleSelectionChange = (rows) => {
-  data.ids = rows.map(item => item.id)// 将选中的系统公告id赋值给ids数组
+  data.ids = rows.map(item => item.id)// 将选中的轮播图id赋值给ids数组
 }
-//分页查询系统公告信息的函数
+//分页查询轮播图信息的函数
 const load = () => {
   request.get('/sideshow/selectPage', {
     params: {
       pageNum: data.pageNum,
       pageSize: data.pageSize,
-      title: data.title,
-      content: data.content
+      name: data.name,
     }
   }).then(res => {
     if (res.code === '200') {
-      data.tableData = res.data?.list || []// 将从后端获取到的系统公告信息列表赋值给表格数据对象  
+      data.tableData = res.data?.list || []// 将从后端获取到的轮播图信息列表赋值给表格数据对象  
       data.total = res.data?.total// 将从后端获取到的总条数赋值给总条数对象
     } else {
       ElMessage.error(res.msg)
@@ -148,21 +146,21 @@ const load = () => {
 //调用分页查询函数
 load()
 
-// 更新系统公告信息的函数
+// 更新轮播图信息的函数
 const update = () => {
   request.put('/sideshow/update', data.form).then(res => {
     if (res.code === '200') {
       ElMessage.success('更新成功')
-      load()// 更新成功后，重新加载系统公告信息列表
+      load()// 更新成功后，重新加载轮播图信息列表
       data.formVisible = false// 更新成功后，将表单的可见状态设置为false，隐藏表单
     } else {
       ElMessage.error(res.msg)
     }
   })
 }
-// 删除单个系统公告信息的函数
+// 删除单个轮播图信息的函数
 const del = (row) => {//传整行数据，否则可能无法请求到id
-  ElMessageBox.confirm('是否删除该系统公告信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
+  ElMessageBox.confirm('是否删除该轮播图信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
     request.delete(`/sideshow/delete/${row.id}`).then(res => {
       if (res.code === '200') {
         ElMessage.success('删除成功')
@@ -175,13 +173,13 @@ const del = (row) => {//传整行数据，否则可能无法请求到id
     })
   })
 }
-// 批量删除系统公告信息的函数
+// 批量删除轮播图信息的函数
 const delBatch = () => {
   if (!data.ids.length) {
-    ElMessage.warning('请选择要删除的系统公告信息')
+    ElMessage.warning('请选择要删除的轮播图信息')
     return
   }
-  ElMessageBox.confirm('是否删除该系统公告信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
+  ElMessageBox.confirm('是否删除该轮播图信息?（删除后将无法恢复）', '删除确认', { type: 'warning' }).then(res => {
     request.delete(`/sideshow/delete/batch`, { data: data.ids }).then(res => {
       if (res.code === '200') {
         ElMessage.success('删除成功')
@@ -198,7 +196,7 @@ const delBatch = () => {
 const save = () => {
   formRef.value.validate((valid) => {
     if (valid) {
-      data.form.id? update() : add() // 根据表单数据对象中的id属性判断是编辑还是添加系统公告信息
+      data.form.id? update() : add() // 根据表单数据对象中的id属性判断是编辑还是添加轮播图信息
     }
   })
 }

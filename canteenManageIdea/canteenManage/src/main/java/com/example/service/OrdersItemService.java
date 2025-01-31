@@ -42,7 +42,7 @@ public class OrdersItemService {
     // 分页查询订单详细信息
     public PageInfo<OrdersItem> selectPage(OrdersItem ordersItem, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);// 开启分页功能，指定当前页码和每页显示的记录数
-        List<OrdersItem> list = ordersItemMapper.selectAll(ordersItem); // 执行查询，根据传入的查询条件获取订单详细信息列表
+        List<OrdersItem> list = selectAll(ordersItem); // 执行查询，根据传入的查询条件获取订单详细信息列表
         return PageInfo.of(list);// 将查询结果封装成PageInfo对象，便于获取分页信息
     }
 
@@ -53,6 +53,7 @@ public class OrdersItemService {
 
     // 根据id更新订单详细信息
     public void updateById(OrdersItem ordersItem) {
+        ordersItem.setTime(DateUtil.now());
         ordersItemMapper.updateById(ordersItem);
     }
 

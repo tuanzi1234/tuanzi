@@ -67,17 +67,24 @@ public class OrdersService {
             // 查询对应的菜品
             Dish dish = dishMapper.selectById(ordersItem.getDishId());
             if (ObjectUtil.isNotNull(dish)) {
-                // 恢复库存
-                dish.setNum(dish.getNum() + ordersItem.getNum());
-                dishMapper.updateById(dish);
+                //查询订单状态，若已完成，则不恢复库存
+
+                    // 恢复库存
+                    dish.setNum(dish.getNum() + ordersItem.getNum());
+                    dishMapper.updateById(dish);
+
             }
         }
     }
     // 根据id删除单个订单信息
     public void deleteById(Integer id) {
-        ordersMapper.deleteById(id);
+
         // 恢复库存
-        resetDish(id);
+        Orders orders = ordersMapper.selectById(id); // 获取订单对象
+        if (!"已上餐".equals(orders.getStatus())) { // 检查订单状态是否为“已完成”
+            resetDish(id);
+        }
+        ordersMapper.deleteById(id);
         // 删除订单详细信息
         ordersItemMapper.deleteByOrderId(id);
     }
@@ -86,10 +93,14 @@ public class OrdersService {
     // 批量删除订单信息
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
+
+            Orders orders = ordersMapper.selectById(id); // 获取订单对象
+            if (!"已上餐".equals(orders.getStatus())) { // 检查订单状态是否为“已完成”
+                // 恢复库存
+                resetDish(id);
+            }
             // 删除订单信息
             ordersMapper.deleteById(id);
-            // 恢复库存
-            resetDish(id);
             // 删除订单详细信息
             ordersItemMapper.deleteByOrderId(id);
         }

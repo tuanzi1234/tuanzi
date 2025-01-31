@@ -31,7 +31,7 @@
             <el-tag v-if="scope.row.status === '已完成'" type="success">{{ scope.row.status }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="订单详情">
+        <el-table-column label="订单详情" width="130px">
           <template v-slot="scope">
             <el-button type="primary" plain @click="loadDetail(scope.row.id, scope.row.status)">查看详情</el-button>
           </template>
@@ -41,7 +41,6 @@
             <el-button v-if="scope.row.status === '待支付'" type="danger" plain @click="cancel(scope.row)">取消订单</el-button>
             <el-button v-if="scope.row.status === '待支付'" type="info" plain @click="payInit(scope.row)">支付</el-button>
             <el-button v-if="scope.row.status === '已上餐'" type="success" plain @click="changeStatus(scope.row, '已完成')">完成</el-button>
-            <el-button v-if="scope.row.status === '已完成'" type="danger" plain @click="del(scope.row)">删除</el-button>
             <span v-if="scope.row.status === '已支付'">出餐中......</span>
           </template>
         </el-table-column>
@@ -86,7 +85,7 @@
         </el-table-column>
         <el-table-column label="操作" width="180" v-if="data.status == '已完成'">
           <template v-slot="scope">
-            <el-button type="success" plain @click="del(scope.row)">评价</el-button>
+            <el-button type="success" :disabled="scope.row.comment || scope.row.score" plain @click="comment(scope.row)">评价</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -138,9 +137,27 @@
         <div style="flex:1; text-align: right; font-size: 15px; color: red;">支付金额：<span style="font-size: 25px;">￥{{ data.orders.price }}</span></div>
         <div style="width: 100px;">
           <el-button @click="pay" type="danger" style="width: 100px;" >确认支付</el-button>
-        </div>
-        
+        </div>  
       </div>
+    </el-dialog>
+    <!----------------- 评价的弹窗 ------------------>
+    <el-dialog title="评价信息" v-model="data.commentVisible" width="30%">
+      <el-form ref="formRef" :model="data.ordersItem" label-width="80px" style="padding: 20px;">
+        <el-form-item prop="score" label="菜品评分">
+          <el-rate v-model="data.ordersItem.score" show-score text-color="#ff9900" score-template="{value} 分" />
+        </el-form-item>
+        <el-form-item prop="comment" label="评价内容">
+          <el-input type="textarea" rows="4" v-model="data.ordersItem.comment"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="data.commentVisible = false">取消</el-button>
+          <el-button type="primary" @click="commentSave">
+            确定
+          </el-button>
+        </div>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -165,6 +182,8 @@ const data = reactive({
   payVisible: false,
   totalPrice: 0,
   orders: {},
+  commentVisible: false,
+  ordersItem: {},
 })
 
 const load = () => {
@@ -275,19 +294,23 @@ const changeStatus = (row, status) => {
     }
   })
 }
-// 删除单个订单信息的函数
-const del = (row) => {//传整行数据，否则可能无法请求到id
-  ElMessageBox.confirm('删除后数据无法恢复，是否删除？', '删除确认', { type: 'warning' }).then(res => {
-    request.delete(`/orders/delete/${row.id}`).then(res => {
-      if (res.code === '200') {
-        ElMessage.success('删除成功')
-        load()
-      } else {
-        ElMessage.error(res.msg)
-      }
-    }).catch(err => {
-      ElMessage.error(err)
-    })
+
+//评价按钮点击事件的函数
+const comment = (row) => {
+  data.ordersItem = JSON.parse(JSON.stringify(row))
+  data.commentVisible = true
+}
+
+//点击评价确定按钮的函数
+const commentSave = () => {
+  request.put('/ordersItem/update', data.ordersItem).then(res => {
+    if (res.code === '200') {
+      ElMessage.success('评价成功')
+      data.commentVisible = false 
+      data.itemVisible = false
+    }else{
+      ElMessage.error(res.msg)
+    }
   })
 }
 </script>

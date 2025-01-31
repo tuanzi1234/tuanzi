@@ -7,10 +7,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 重定向根路径到管理主页
+    // 重定向根路径到登录页面
     {
       path: '/',
-      redirect: '/manager/home',
+      redirect: '/login',
     },
     {
       // 定义路径为 /manager 的路由
@@ -117,6 +117,12 @@ const router = createRouter({
           path: 'orders',
           meta:{name: '食堂订单管理'},
           component: () => import('@/views/manager/Orders.vue'),
+        },
+        //定义管理学生评价的子路由
+        {
+          path: 'comment',
+          meta:{name: '学生评价管理'},
+          component: () => import('@/views/manager/Comment.vue'),
         },
       ],
     },

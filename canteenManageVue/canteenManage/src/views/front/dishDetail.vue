@@ -24,19 +24,34 @@
             style="width: 30px; height: 30px; cursor: pointer; margin-left: 40px;">
           <img @click="collect" v-else src="@/assets/imgs/收藏.png" alt=""
             style="width: 30px; height: 30px; cursor: pointer; margin-left: 40px;">
-            <div v-if="data.isCollect" style="margin-left: 5px; font-size: 20px; color:#0449a5">{{ data.collectNum }}</div>
-            <div v-else style="margin-left: 5px; font-size: 20px;">{{ data.collectNum }}</div>
+          <div v-if="data.isCollect" style="margin-left: 5px; font-size: 20px; color:#0449a5">{{ data.collectNum }}
+          </div>
+          <div v-else style="margin-left: 5px; font-size: 20px;">{{ data.collectNum }}</div>
         </div>
         <div style="margin-top: 20px; text-align: center;">
           <el-button @click="myLike" type="info" style="padding: 20px 30px; font-size: 15px; ">我想吃</el-button>
         </div>
       </div>
     </div>
+    <!------------------------------ 用户评价 ------------------------------------------------>
+    <div class="card" style="margin-top: 10px;">
+      <div style="font-size: 20px; height: 40px; line-height: 40px; border-bottom: 1px solid #cccccc;">菜品评价（{{
+        data.ordersItemData.length }}）</div>
+      <div v-for="item in data.ordersItemData" :key="item.id" style="margin-top: 20px; display: flex; grid-gap: 20px; align-items: center;">
+        <img :src="item.studentAvatar" alt="" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+        <div style="width: 100px;">{{ item.studentName }}</div>
+        <div style="flex: 1;">
+          <el-rate v-model="item.score" disabled show-score text-color="#ff9900" score-template="{value} 分" />
+          <div style="color: #828282; line-height: 20px;">{{ item.comment }}</div>
+        </div>
+        <div style="width: 150px; color: #828282;">{{ item.time }}</div>
+      </div>
+    </div>
     <!----------------- 新增点单信息的弹窗 ------------------>
     <el-dialog title="选择点单数量" v-model="data.formVisible" width="30%">
       <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding: 20px;">
         <el-form-item prop="num" label="份数">
-          <el-input-number v-model="data.form.num" :min="1"  :max="data.dishData.num" />
+          <el-input-number v-model="data.form.num" :min="1" :max="data.dishData.num" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -52,8 +67,8 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { ElMessage, formContextKey } from 'element-plus'
+import { reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 import request from '@/utils/request'
 import router from '@/router'
 
@@ -69,6 +84,7 @@ const data = reactive({
   isCollect: false,
   form: {},
   formVisible: false,
+  ordersItemData: [],
 })
 
 //加载菜品信息数据的函数
@@ -101,7 +117,6 @@ const praise = () => {
     dishId: data.dishId
   }).then(res => {
     if (res.code === '200') {
-      ElMessage.success("点赞成功")
       loadPraiseNum()
     } else {
       ElMessage.error(res.msg)
@@ -139,7 +154,6 @@ const collect = () => {
     dishId: data.dishId
   }).then(res => {
     if (res.code === '200') {
-      ElMessage.success("收藏成功")
       loadCollectNum()
     } else {
       ElMessage.error(res.msg)
@@ -188,9 +202,24 @@ const save = () => {
       loadDish()
     } else {
       ElMessage.error(res.msg)
-    } 
+    }
   })
 }
+//加载评价的函数
+const loadOrdersItem = () => {
+  request.get('/ordersItem/selectAll', {
+    params: {
+      dishId: data.dishId
+    }
+  }).then(res => {
+    if (res.code === '200') {
+      data.ordersItemData = res.data.filter(v => v.comment && v.score)
+    } else {
+      ElMessage.error(res.msg)
+    }
+  })
+}
+loadOrdersItem()
 </script>
 
 <style scoped></style>
