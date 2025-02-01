@@ -10,7 +10,7 @@ const router = createRouter({
     // 重定向根路径到登录页面
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/front/home',
     },
     {
       // 定义路径为 /manager 的路由
@@ -260,8 +260,20 @@ router.beforeEach((to, from, next) => {
   //to是要进入的目标路由对象
   //from 是当前导航正在离开的路由对象
   //next 是一个函数，用于控制导航的下一步操作
-  // 检查是否为登录注册页面，如果是，则放行
-  if (to.path === '/login' || to.path === '/register') {
+   // 定义需要放行的 front 子路由路径
+   const publicPaths = [
+    '/register',//注册
+    '/login',//登录
+    '/front/home',//主页
+    '/front/dishDetail',//菜品详情
+    '/front/information',//资讯
+    '/front/informationDetail',//资讯详情
+    '/front/search',//搜索
+    '/front/Notice',//公告
+  ];
+
+  // 如果目标路由在放行路径列表中，则放行
+  if (publicPaths.includes(to.path)) {
     next();
     return;
   }

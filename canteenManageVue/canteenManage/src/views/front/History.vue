@@ -4,7 +4,7 @@
     <div style="flex: 1; padding: 5px;">
       <el-row :gutter="10">
         <el-col :span="6" v-for="item in data.dishData" :key="item.id">
-          <div class="front_card">
+          <div class="front_card" style="margin: 10px auto;">
             <img @click="navTo('/front/dishDetail?id=' + item.dish.id)" :src="item.dish.img" alt=""
               style="width: 100%; height: 130px; object-fit: cover; border-top-left-radius: 6px; border-top-right-radius: 6px; cursor: pointer;">
             <div style="padding: 10px;">
@@ -21,7 +21,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="card" v-if="data.total">
+    <div class="card" v-if="data.total" style="margin-top: 5px;">
       <el-pagination @current-change="loadHistory" background layout="total, prev, pager, next"
         :page-size="data.pageSize" v-model:current-page="data.pageNum" :total="data.total" />
     </div>

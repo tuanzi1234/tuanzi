@@ -41,7 +41,7 @@ public class InformationService {
         List<Information> list = informationMapper.selectAll(information); // 执行查询，根据传入的查询条件获取食堂资讯列表
         Account account = TokenUtils.getCurrentAccount(); // 获取当前登录用户的信息
         for (Information dbInformation : list) {
-            if (!RoleEnum.ADMIN.name().equals(account.getRole())) {
+            if (account == null || !RoleEnum.ADMIN.name().equals(account.getRole())) {
                 dbInformation.setContent(HtmlUtil.cleanHtmlTag(dbInformation.getContent()));//去掉富文本编辑器的html标签
             }
             Admin admin = adminMapper.selectByUsername(dbInformation.getUsername());

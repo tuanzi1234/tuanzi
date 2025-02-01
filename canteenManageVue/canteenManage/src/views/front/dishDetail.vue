@@ -13,7 +13,7 @@
         <div style="margin-top: 10px;">所属分类：<el-tag type="success">{{ data.dishData.categoryName }}</el-tag></div>
         <div style="margin-top: 15px; line-height: 25px;  text-align: justify;" class="line4">菜品描述：{{
           data.dishData.content }}</div>
-        <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; ">
+        <div v-if="data.user.role === 'STUDENT'" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; ">
           <img @click="praise" v-if="data.isPraise" src="@/assets/imgs/点赞 (1).png" alt=""
             style="width: 25px; height: 25px; cursor: pointer;">
           <img @click="praise" v-else src="@/assets/imgs/点赞.png" alt=""
@@ -29,7 +29,7 @@
           <div v-else style="margin-left: 5px; font-size: 20px;">{{ data.collectNum }}</div>
         </div>
         <div style="margin-top: 20px; text-align: center;">
-          <el-button @click="myLike" type="info" style="padding: 20px 30px; font-size: 15px; ">我想吃</el-button>
+          <el-button @click="myLike" type="info" :disabled="data.user.role === STUDENT" style="padding: 20px 30px; font-size: 15px;">我想吃</el-button>
         </div>
       </div>
     </div>
@@ -101,6 +101,10 @@ loadDish()
 
 //更新浏览记录的函数
 const changeHistory = () => {
+  //如果是游客，直接返回
+  if (!data.user || !data.user.name) {
+    return
+  }
   request.post('/history/add', {
     dishId: data.dishId
   }).then(res => {
@@ -213,7 +217,7 @@ const loadOrdersItem = () => {
     }
   }).then(res => {
     if (res.code === '200') {
-      data.ordersItemData = res.data.filter(v => v.comment && v.score)
+      data.ordersItemData = res.data.filter(v => v.comment || v.score)
     } else {
       ElMessage.error(res.msg)
     }

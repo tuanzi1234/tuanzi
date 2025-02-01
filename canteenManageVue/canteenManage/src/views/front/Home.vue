@@ -71,7 +71,7 @@
                   <div style="flex: 1; text-align: right;">库存：{{ item.num }} 份</div>
                 </div>
               </div>
-              <div class="front_card" v-if="!item.num">
+              <div class="front_card" v-if="!item.num && item.status === '上架'">
                 <div style="display: flex; justify-content: center;">
                   <img src="@/assets/imgs/售罄.png" alt=""
                     style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
@@ -136,7 +136,7 @@
               <div style="flex: 1; text-align: right;">库存：{{ item.num }} 份</div>
             </div>
           </div>
-          <div class="front_card" v-if="!item.num">
+          <div class="front_card" v-if="!item.num && item.status === '上架'">
             <div style="display: flex; justify-content: center;">
               <img src="@/assets/imgs/售罄.png" alt=""
                 style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
@@ -244,13 +244,13 @@ const loadDishSales = () => {
 }
 loadDishSales()
 
-//加载热门搜索记录的函数
+//加载最近搜索记录的函数
 const loadSearch = () => {
   request.get('/search/selectAll').then(res => {
     if (res.code === '200') {
       data.searchData = res.data
-      if (data.searchData.length > 10) {
-        data.searchData = data.searchData.slice(0, 10)
+      if (data.searchData.length > 5) {
+        data.searchData = data.searchData.slice(0, 5)
       }
     } else {
       ElMessage.error(res.msg)
