@@ -270,6 +270,8 @@ router.beforeEach((to, from, next) => {
     '/front/informationDetail',//资讯详情
     '/front/search',//搜索
     '/front/Notice',//公告
+    '/403',//无权限
+    '/404',//找不到页面
   ];
 
   // 如果目标路由在放行路径列表中，则放行
@@ -280,7 +282,12 @@ router.beforeEach((to, from, next) => {
 
   let adminPath = '/manager'
   let user = JSON.parse(localStorage.getItem('project-user' || '{}'))
-  if(user.role !== 'ADMIN' && to.path.startsWith(adminPath)){
+  // 检查 user 是否存在并且有 role 属性
+  if (!user || !user.role) {
+    next('/403'); // 或者重定向到登录页面或其他合适的页面
+    return;
+  }
+  if((user.role !== 'ADMIN' && to.path.startsWith(adminPath)) ){
     next('/403')
   }else{
     next()

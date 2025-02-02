@@ -15,9 +15,12 @@ const homeRoute = ref('/');
 // 从本地存储中获取用户信息
 const user = JSON.parse(localStorage.getItem('project-user' || '{}'))
 // 根据用户角色设置 homeRoute
-if (user.role === 'STUDENT') {
+if (!user) {
   homeRoute.value = '/front/home';
-} else if (user.role === 'ADMIN') {
+} else if (user.role === 'STUDENT') {
+  homeRoute.value = '/front/home';
+}
+else if (user.role === 'ADMIN') {
   homeRoute.value = '/manager/home';
 }
 
