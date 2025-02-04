@@ -76,6 +76,16 @@ public class OrdersService {
             }
         }
     }
+
+    // 返还订单金额的方法
+    private void returnOrderAmount(Orders orders) {
+        Student student = studentMapper.selectById(orders.getStudentId()); // 使用订单中的student_id查询学生信息
+        if (ObjectUtil.isNotNull(student)) {
+            student.setAccount(student.getAccount() + orders.getPrice());
+            studentMapper.updateById(student);
+        }
+    }
+
     // 根据id删除单个订单信息
     public void deleteById(Integer id) {
 
@@ -83,6 +93,10 @@ public class OrdersService {
         Orders orders = ordersMapper.selectById(id); // 获取订单对象
         if (!"已上餐".equals(orders.getStatus())) { // 检查订单状态是否为“已完成”
             resetDish(id);
+        }
+        if ("已支付".equals(orders.getStatus())) {
+            // 返还订单金额
+            returnOrderAmount(orders);
         }
         ordersMapper.deleteById(id);
         // 删除订单详细信息
@@ -98,6 +112,10 @@ public class OrdersService {
             if (!"已上餐".equals(orders.getStatus())) { // 检查订单状态是否为“已完成”
                 // 恢复库存
                 resetDish(id);
+            }
+            if ("已支付".equals(orders.getStatus())) {
+                // 返还订单金额
+                returnOrderAmount(orders);
             }
             // 删除订单信息
             ordersMapper.deleteById(id);
