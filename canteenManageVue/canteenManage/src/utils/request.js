@@ -30,7 +30,8 @@ request.interceptors.response.use(
       //当权限验证不通过时，给出提示
       if (res.code === '401') {
           ElMessage.error(res.msg)
-          router.push({path: '/login'})
+          localStorage.removeItem('project-user');
+          router.push({path: '/login'})    
       }
       // 兼容服务端返回的字符串数据
       if (typeof res === 'string') {
