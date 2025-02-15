@@ -52,9 +52,11 @@ const data = reactive({
   rules: {
     password: [
       { required: true, message: '请输入原密码', trigger: 'blur' },
+      { min: 6, message: '密码不能少于六位', trigger: 'blur' },
     ],
     newPassword: [
       { required: true, message: '请输入新密码', trigger: 'blur' },
+      { min: 6, message: '密码不能少于六位', trigger: 'blur' },
     ],
     confirmPassword: [
       { validator: validatePass, trigger: 'blur' }

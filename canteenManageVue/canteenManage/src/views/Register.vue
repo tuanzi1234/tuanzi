@@ -53,9 +53,11 @@ const data = reactive({
   rules: {
     username: [
       { required: true, message: '请输入账号', trigger: 'blur' },
+      { pattern: /^\d+$/, message: '账号只能输入学号', trigger: 'blur' }, // 添加正则表达式验证规则
     ],
     password: [
       { required: true, message: '请输入密码', trigger: 'blur' },
+      { min: 6, message: '密码不能少于六位', trigger: 'blur' },
     ],
     confirmPassword: [
       { validator: validatePass, trigger: 'blur' }

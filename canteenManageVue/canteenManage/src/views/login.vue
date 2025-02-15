@@ -112,6 +112,7 @@ const data = reactive({
     ],
     password: [
       { required: true, message: '请输入密码', trigger: 'blur' },
+      { min: 6, message: '密码不能少于六位', trigger: 'blur' },
     ],
     validCode: [
       { required: true, message: '请输入验证码', trigger: 'blur' },
@@ -151,7 +152,7 @@ const login = () => {
           }, 500)
         } else {
           // 登录失败，弹出提示框
-          ElMessage.error('登录信息输入错误，登录失败')
+          ElMessage.error('账号或密码输入错误，登录失败')
         }
       }
       )
