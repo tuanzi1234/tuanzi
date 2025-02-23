@@ -2,28 +2,13 @@
   <!--------------------------- 主页 ---------------------------------------------->
   <div class="main-content" style="width: 70%; margin: 20px auto; ">
     <!----------------------------------- 第一部分 ---------------------------------->
-    <div style="display: flex; grid-gap: 20px;">
-      <!-------------------------------- 轮播图 ----------------------------------->
-      <div style="flex: 1;">
-        <el-carousel height="300px" style=" border-radius: 5px;">
-          <el-carousel-item v-for="item in data.sideshowData" :key="item.id">
-            <img :src="item.img" alt="" style="height: 300px; width: 100%; object-fit: contain; ">
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-      <!-------------------------------- 登录注册 ------------------------------------>
-      <div style="width: 360px; height: 300px; background-color: #F5F5F5; border-radius: 5px;">
-        <div style="display: flex; flex-direction: column; justify-content: center; margin-top: 100px;">
-          <el-button @click="navTo('/login')" type="info" style="margin: 0 50px 40px 50px;"><el-icon
-              style="margin-right: 10px;">
-              <UserFilled />
-            </el-icon>用户登录</el-button>
-          <el-button @click="navTo('/register')" type="primary" style="margin: 0 50px 0 50px;"><el-icon
-              style="margin-right: 10px;">
-              <User />
-            </el-icon>用户注册</el-button>
-        </div>
-      </div>
+    <!-------------------------------- 轮播图 ----------------------------------->
+    <div>
+      <el-carousel height="300px" style=" border-radius: 5px;">
+        <el-carousel-item v-for="item in data.sideshowData" :key="item.id">
+          <img :src="item.img" alt="" style="height: 300px; width: 100%; object-fit: contain; ">
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <!----------------------------------- 第二部分 ------------------------------------------>
     <!---------------------------- 菜品信息区域 ------------------------->
@@ -91,9 +76,11 @@
         <!-------------- 菜品搜索记录 -------------->
         <div style="width:200px; height: 200px;">
           <div style="color: #27408B; font-size: 15px; font-weight: bold; margin-bottom: 10px;">看看大家最近在搜索什么</div>
-          <div v-for="(item, index) in data.searchData" :key="item.id" style="display: flex; align-items: center; grid-gap: 10px; margin-bottom: 10px;">
+          <div v-for="(item, index) in data.searchData" :key="item.id"
+            style="display: flex; align-items: center; grid-gap: 10px; margin-bottom: 10px;">
             <div style="width: 20px;">{{ index + 1 }}</div>
-            <div class="line1" @click="navTo('/front/search?name=' + item.name)" style="width: 100%; cursor: pointer;">{{ item.name }}</div>
+            <div class="line1" @click="navTo('/front/search?name=' + item.name)" style="width: 100%; cursor: pointer;">
+              {{ item.name }}</div>
             <img src="@/assets/imgs/up.png" alt="" style="width: 15px; height: 15px;">
           </div>
         </div>
@@ -159,7 +146,6 @@
 
 <script setup>
 import { reactive } from 'vue';
-import { User } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 import request from '@/utils/request'
 

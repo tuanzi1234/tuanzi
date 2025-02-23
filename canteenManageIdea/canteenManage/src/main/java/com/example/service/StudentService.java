@@ -77,19 +77,25 @@ public class StudentService {
 
     // 登录
     public Student login(Account account) {
+        // 1. 用户存在性校验
         Student dbStudent = studentMapper.selectByUsername(account.getUsername());
         if (ObjectUtil.isNull(dbStudent)) {
-            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
+            throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR); // 用户不存在时抛出业务异常
         }
-        if (!BCrypt.checkpw(account.getPassword(), dbStudent.getPassword())) {
-            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
-        }
-        // 生成token
 
-        String token = TokenUtils.createToken(dbStudent.getId() + "-" + dbStudent.getRole(), dbStudent.getPassword());
-        dbStudent.setToken(token);
-        // 登录成功
-        return dbStudent;
+        // 2. 密码安全校验
+        if (!BCrypt.checkpw(account.getPassword(), dbStudent.getPassword())) {
+            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR); // 密码不匹配时抛出业务异常
+        }
+
+        // 3. Token生成与身份绑定
+        String token = TokenUtils.createToken(
+                dbStudent.getId() + "-" + dbStudent.getRole(), // 组合用户ID与角色作为身份标识
+                dbStudent.getPassword()                        // 使用数据库存储的密码哈希作为签名密钥
+        );
+        dbStudent.setToken(token);  // 将生成的令牌绑定到用户对象
+
+        return dbStudent;  // 返回包含令牌的完整用户信息
     }
 
     // 修改密码
@@ -107,7 +113,13 @@ public class StudentService {
         studentMapper.updateById(dbStudent);
     }
 
-    // 注册
+    /**
+     * 用户注册时密码加密过程说明：
+     * 1. 使用BCrypt强哈希算法进行加密
+     * 2. BCrypt.gensalt() 生成随机的加密盐值，增强安全性
+     * 3. BCrypt.hashpw() 将明文密码与盐值组合，进行多轮哈希计算（默认10轮）
+     * 4. 生成的哈希值格式包含：算法版本号、计算成本、随机盐值、最终哈希值
+     */
     public void register(Account account) {
         Student student = new Student();
         BeanUtils.copyProperties(account, student);

@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 重定向根路径到登录页面
+    // 重定向根路径到前台首页
     {
       path: '/',
       redirect: '/front/home',
