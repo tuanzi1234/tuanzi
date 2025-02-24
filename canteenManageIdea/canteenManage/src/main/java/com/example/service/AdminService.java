@@ -110,10 +110,10 @@ public class AdminService {
     // 重置密码
     public void resetPassword(Account account) {
         Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
-        if (ObjectUtil.isNull(dbAdmin)) {
+        if (ObjectUtil.isNull(dbAdmin)) {// 检查用户是否存在
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        if(!dbAdmin.getPhone().equals(account.getPhone())){
+        if(!dbAdmin.getPhone().equals(account.getPhone())){// 验证手机号匹配
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
         // 生成新密码的哈希值

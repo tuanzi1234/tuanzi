@@ -101,23 +101,29 @@ public class FileController {
      */
     @PostMapping("/wang/upload")
     public Map<String, Object> wangEditorUpload(MultipartFile file) {
+        // 生成唯一标识，解决并发上传文件名冲突问题
         String flag = System.currentTimeMillis() + "";
         String fileName = file.getOriginalFilename();
+
         try {
-            // 文件存储形式：时间戳-文件名
+            // 持久化文件：时间戳前缀 + 原始文件名 的存储策略
             FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
             System.out.println(fileName + "--上传成功");
-            Thread.sleep(1L);
+            Thread.sleep(1L);  // 微小延迟，用于防止快速重复提交
         } catch (Exception e) {
-            System.err.println(fileName + "--文件上传失败");
+            System.err.println(fileName + "--文件上传失败");  // 异常处理需增强（当前仅日志打印）
         }
+
+        // 构建文件访问地址（需确保fileBaseUrl正确配置域名/路径）
         String http = fileBaseUrl + "/files/download/";
+
+        // 构造标准响应结构（严格遵循wangEditor接口规范）
         Map<String, Object> resMap = new HashMap<>();
-        // wangEditor上传图片成功后， 需要返回的参数
-        resMap.put("errno", 0);
-        resMap.put("data", CollUtil.newArrayList(Dict.create().set("url", http + flag + "-" + fileName)));
+        resMap.put("errno", 0);  // 固定成功状态码
+        resMap.put("data", CollUtil.newArrayList(
+                Dict.create().set("url", http + flag + "-" + fileName)  // 生成可直接访问的URL
+        ));
         return resMap;
     }
-
 
 }
