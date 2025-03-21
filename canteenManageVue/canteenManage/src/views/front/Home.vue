@@ -44,7 +44,7 @@
               </div>
               <div class="front_card" v-if="item.status === '下架'">
                 <div style="display: flex; justify-content: center;">
-                  <img src="@/assets/imgs/下架.png" alt=""
+                  <img src="@/assets/imgs/下架.svg" alt=""
                     style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
                 </div>
                 <div style="padding: 10px;">
@@ -58,7 +58,7 @@
               </div>
               <div class="front_card" v-if="!item.num && item.status === '上架'">
                 <div style="display: flex; justify-content: center;">
-                  <img src="@/assets/imgs/售罄.png" alt=""
+                  <img src="@/assets/imgs/售罄.svg" alt=""
                     style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
                 </div>
                 <div style="padding: 10px;">
@@ -81,7 +81,7 @@
             <div style="width: 20px;">{{ index + 1 }}</div>
             <div class="line1" @click="navTo('/front/search?name=' + item.name)" style="width: 100%; cursor: pointer;">
               {{ item.name }}</div>
-            <img src="@/assets/imgs/up.png" alt="" style="width: 15px; height: 15px;">
+            <img src="@/assets/imgs/up.svg" alt="" style="width: 15px; height: 15px;">
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
           </div>
           <div class="front_card" v-if="item.status === '下架'">
             <div style="display: flex; justify-content: center;">
-              <img src="@/assets/imgs/下架.png" alt=""
+              <img src="@/assets/imgs/下架.svg" alt=""
                 style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
             </div>
             <div style="padding: 10px;">
@@ -125,7 +125,7 @@
           </div>
           <div class="front_card" v-if="!item.num && item.status === '上架'">
             <div style="display: flex; justify-content: center;">
-              <img src="@/assets/imgs/售罄.png" alt=""
+              <img src="@/assets/imgs/售罄.svg" alt=""
                 style="width: 130px; height: 130px;  border-top-left-radius: 6px; border-top-right-radius: 6px;">
             </div>
             <div style="padding: 10px;">

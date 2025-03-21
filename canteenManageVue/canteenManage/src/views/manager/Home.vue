@@ -5,7 +5,7 @@
       <div style="width: 300px;">
         <div class="card" style="height: 80px; display: flex; align-items: center;">
           <div style="flex: 1; text-align: center;">
-            <img src="@/assets/imgs/菜品数量.png" alt="" style="height: 60px; width: 70px;">
+            <img src="@/assets/imgs/菜品数量.svg" alt="" style="height: 60px; width: 70px;">
           </div>
           <div style="flex: 1;">
             <div style="font-size: 20px;">菜品数量</div>
@@ -14,7 +14,7 @@
         </div>
         <div class="card" style="height: 80px; margin-top: 10px; display: flex; align-items: center;">
           <div style="flex: 1; text-align: center;">
-            <img src="@/assets/imgs/订单数量.png" alt="" style="height: 60px; width: 70px;">
+            <img src="@/assets/imgs/订单数量.svg" alt="" style="height: 60px; width: 70px;">
           </div>
           <div style="flex: 1;">
             <div style="font-size: 20px;">订单数量</div>
@@ -23,7 +23,7 @@
         </div>
         <div class="card" style="height: 80px; margin-top: 10px; display: flex; align-items: center;">
           <div style="flex: 1; text-align: center;">
-            <img src="@/assets/imgs/订单总额.png" alt="" style="height: 65px; width: 70px;">
+            <img src="@/assets/imgs/订单总额.svg" alt="" style="height: 65px; width: 70px;">
           </div>
           <div style="flex: 1;">
             <div style="font-size: 20px;">订单总额</div>
@@ -32,7 +32,7 @@
         </div>
         <div class="card" style="height: 80px; margin-top: 10px; display: flex; align-items: center;">
           <div style="flex: 1; text-align: center;">
-            <img src="@/assets/imgs/资讯数量.png" alt="" style="height: 60px; width: 70px;">
+            <img src="@/assets/imgs/资讯数量.svg" alt="" style="height: 60px; width: 70px;">
           </div>
           <div style="flex: 1;">
             <div style="font-size: 20px;">资讯数量</div>

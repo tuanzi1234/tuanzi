@@ -14,15 +14,15 @@
         <div style="margin-top: 15px; line-height: 25px;  text-align: justify;" class="line4">菜品描述：{{
           data.dishData.content }}</div>
         <div v-if="data.user.role === 'STUDENT'" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; ">
-          <img @click="praise" v-if="data.isPraise" src="@/assets/imgs/点赞 (1).png" alt=""
+          <img @click="praise" v-if="data.isPraise" src="@/assets/imgs/点赞(1).svg" alt=""
             style="width: 25px; height: 25px; cursor: pointer;">
-          <img @click="praise" v-else src="@/assets/imgs/点赞.png" alt=""
+          <img @click="praise" v-else src="@/assets/imgs/点赞.svg" alt=""
             style="width: 25px; height: 25px; cursor: pointer;">
           <div v-if="data.isPraise" style="margin-left: 5px; font-size: 20px; color:#d81e06">{{ data.praiseNum }}</div>
           <div v-else style="margin-left: 5px; font-size: 20px;">{{ data.praiseNum }}</div>
-          <img @click="collect" v-if="data.isCollect" src="@/assets/imgs/收藏 (1).png" alt=""
+          <img @click="collect" v-if="data.isCollect" src="@/assets/imgs/收藏(1).svg" alt=""
             style="width: 30px; height: 30px; cursor: pointer; margin-left: 40px;">
-          <img @click="collect" v-else src="@/assets/imgs/收藏.png" alt=""
+          <img @click="collect" v-else src="@/assets/imgs/收藏.svg" alt=""
             style="width: 30px; height: 30px; cursor: pointer; margin-left: 40px;">
           <div v-if="data.isCollect" style="margin-left: 5px; font-size: 20px; color:#0449a5">{{ data.collectNum }}
           </div>
