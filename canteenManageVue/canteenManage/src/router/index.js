@@ -10,7 +10,14 @@ const router = createRouter({
     // 重定向根路径到前台首页
     {
       path: '/',
-      redirect: '/front/home',
+      redirect: () => {
+        try {
+          const user = JSON.parse(localStorage.getItem('project-user') || '{}')
+          return user?.role === 'ADMIN' ? '/manager/home' : '/front/home'
+        } catch {
+          return '/front/home' // 解析失败时默认跳转前台
+        }
+      }
     },
     {
       // 定义路径为 /manager 的路由
@@ -24,110 +31,110 @@ const router = createRouter({
           // 子路由的路径为 /manager/home
           path: 'home',
           // 子路由的名称为 home
-          meta:{name: '系统首页'},
+          meta: { name: '系统首页' },
           // 同样使用动态导入的方式引入 Editor 组件作为该子路由的视图组件
           component: () => import('@/views/manager/Home.vue'),
         },
         //定义管理员信息的子路由
         {
           path: 'admin',
-          meta:{name: '管理员信息'},
+          meta: { name: '管理员信息' },
           component: () => import('@/views/manager/Admin.vue'),
         },
         //定义管理系统个人中心的子路由
         {
           path: 'person',
-          meta:{name: '个人资料'},
+          meta: { name: '个人资料' },
           component: () => import('@/views/manager/Person.vue'),
         },
         //定义管理修改密码的子路由
         {
           path: 'password',
-          meta:{name: '修改密码'},
+          meta: { name: '修改密码' },
           component: () => import('@/views/manager/Password.vue'),
         },
         //定义管理系统公告的子路由
         {
           path: 'notice',
-          meta:{name: '系统公告'},
+          meta: { name: '系统公告' },
           component: () => import('@/views/manager/Notice.vue'),
         },
         //定义管理用户信息的子路由
         {
           path: 'student',
-          meta:{name: '用户信息'},
+          meta: { name: '用户信息' },
           component: () => import('@/views/manager/Student.vue'),
         },
-         //定义管理菜品分类的子路由
-         {
+        //定义管理菜品分类的子路由
+        {
           path: 'category',
-          meta:{name: '菜品分类'},
+          meta: { name: '菜品分类' },
           component: () => import('@/views/manager/Category.vue'),
         },
         //定义管理菜品信息的子路由
         {
           path: 'dish',
-          meta:{name: '菜品信息'},
+          meta: { name: '菜品信息' },
           component: () => import('@/views/manager/Dish.vue'),
         },
         //定义管理轮播图的子路由
         {
           path: 'sideshow',
-          meta:{name: '轮播图管理'},
+          meta: { name: '轮播图管理' },
           component: () => import('@/views/manager/Sideshow.vue'),
         },
         //定义管理浏览记录的子路由
         {
           path: 'history',
-          meta:{name: '浏览记录管理'},
+          meta: { name: '浏览记录管理' },
           component: () => import('@/views/manager/History.vue'),
         },
         //定义管理点赞记录的子路由
         {
           path: 'praise',
-          meta:{name: '点赞记录管理'},
+          meta: { name: '点赞记录管理' },
           component: () => import('@/views/manager/Praise.vue'),
         },
         //定义管理收藏记录的子路由
         {
           path: 'collect',
-          meta:{name: '收藏记录管理'},
+          meta: { name: '收藏记录管理' },
           component: () => import('@/views/manager/Collect.vue'),
         },
         //定义管理反馈意见的子路由
         {
           path: 'feedback',
-          meta:{name: '反馈意见管理'},
+          meta: { name: '反馈意见管理' },
           component: () => import('@/views/manager/Feedback.vue'),
         },
         //定义管理食堂资讯的子路由
         {
           path: 'Information',
-          meta:{name: '食堂资讯管理'},
+          meta: { name: '食堂资讯管理' },
           component: () => import('@/views/manager/Information.vue'),
         },
-         //定义管理学生点单的子路由
-         {
+        //定义管理学生点单的子路由
+        {
           path: 'dishItem',
-          meta:{name: '食堂点单管理'},
+          meta: { name: '食堂点单管理' },
           component: () => import('@/views/manager/DishItem.vue'),
         },
         //定义管理学生订单的子路由
         {
           path: 'orders',
-          meta:{name: '食堂订单管理'},
+          meta: { name: '食堂订单管理' },
           component: () => import('@/views/manager/Orders.vue'),
         },
         //定义管理学生评价的子路由
         {
           path: 'comment',
-          meta:{name: '学生评价管理'},
+          meta: { name: '学生评价管理' },
           component: () => import('@/views/manager/Comment.vue'),
         },
         //定义管理食堂库存的子路由
         {
           path: 'warehouse',
-          meta:{name: '食堂库存管理'},
+          meta: { name: '食堂库存管理' },
           component: () => import('@/views/manager/Warehouse.vue'),
         },
       ],
@@ -145,85 +152,85 @@ const router = createRouter({
         //定义前台个人中心的子路由
         {
           path: 'person',
-          meta:{name: '个人资料'},
+          meta: { name: '个人资料' },
           component: () => import('@/views/front/Person.vue'),
         },
         //定义前台修改密码的子路由
         {
           path: 'password',
-          meta:{name: '修改密码'},
+          meta: { name: '修改密码' },
           component: () => import('@/views/front/Password.vue'),
         },
         //定义前台系统公告的子路由
         {
           path: 'notice',
-          meta:{name: '系统公告'},
+          meta: { name: '系统公告' },
           component: () => import('@/views/front/Notice.vue'),
         },
         //定义前台菜品详情的子路由
         {
           path: 'dishDetail',
-          meta:{name: '菜品详情'},
+          meta: { name: '菜品详情' },
           component: () => import('@/views/front/DishDetail.vue'),
         },
-         //定义前台浏览历史的子路由
-         {
+        //定义前台浏览历史的子路由
+        {
           path: 'history',
-          meta:{name: '浏览历史'},
+          meta: { name: '浏览历史' },
           component: () => import('@/views/front/History.vue'),
         },
-         //定义前台点赞记录的子路由
-         {
+        //定义前台点赞记录的子路由
+        {
           path: 'praise',
-          meta:{name: '点赞记录'},
+          meta: { name: '点赞记录' },
           component: () => import('@/views/front/Praise.vue'),
         },
         //定义前台收藏记录的子路由
         {
           path: 'collect',
-          meta:{name: '收藏记录'},
+          meta: { name: '收藏记录' },
           component: () => import('@/views/front/Collect.vue'),
         },
         //定义前台意见反馈的子路由
         {
           path: 'feedback',
-          meta:{name: '意见反馈'},
+          meta: { name: '意见反馈' },
           component: () => import('@/views/front/Feedback.vue'),
         },
         //定义前台我的意见反馈的子路由
         {
           path: 'myFeedback',
-          meta:{name: '我的意见反馈'},
+          meta: { name: '我的意见反馈' },
           component: () => import('@/views/front/MyFeedback.vue'),
         },
         //定义前台食堂资讯的子路由
         {
           path: 'information',
-          meta:{name: '食堂资讯'},
+          meta: { name: '食堂资讯' },
           component: () => import('@/views/front/Information.vue'),
         },
         //定义前台食堂资讯详情的子路由
         {
           path: 'informationDetail',
-          meta:{name: '食堂资讯详情'},
+          meta: { name: '食堂资讯详情' },
           component: () => import('@/views/front/InformationDetail.vue'),
         },
         //定义前台点单信息的子路由
         {
           path: 'dishItem',
-          meta:{name: '点单信息'},
+          meta: { name: '点单信息' },
           component: () => import('@/views/front/DishItem.vue'),
         },
         //定义前台订单信息的子路由
         {
           path: 'orders',
-          meta:{name: '订单信息'},
+          meta: { name: '订单信息' },
           component: () => import('@/views/front/Orders.vue'),
         },
         //定义前台搜索的子路由
         {
           path: 'search',
-          meta:{name: '搜索'},
+          meta: { name: '搜索' },
           component: () => import('@/views/front/Search.vue'),
         },
       ],
@@ -249,7 +256,7 @@ const router = createRouter({
       component: () => import('@/views/403.vue'),
     },
     {
-      path:'/:pathMatch(.*)*',
+      path: '/:pathMatch(.*)*',
       redirect: '/404',
     }
   ],
@@ -260,8 +267,8 @@ router.beforeEach((to, from, next) => {
   //to是要进入的目标路由对象
   //from 是当前导航正在离开的路由对象
   //next 是一个函数，用于控制导航的下一步操作
-   // 定义需要放行的 front 子路由路径
-   const publicPaths = [
+  // 定义需要放行的 front 子路由路径
+  const publicPaths = [
     '/register',//注册
     '/login',//登录
     '/front/home',//主页
@@ -287,9 +294,9 @@ router.beforeEach((to, from, next) => {
     next('/403'); // 或者重定向到登录页面或其他合适的页面
     return;
   }
-  if((user.role !== 'ADMIN' && to.path.startsWith(adminPath)) ){
+  if ((user.role !== 'ADMIN' && to.path.startsWith(adminPath))) {
     next('/403')
-  }else{
+  } else {
     next()
   }
 })

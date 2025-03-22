@@ -74,7 +74,7 @@ import { reactive, ref } from 'vue'
 import request from '@/utils/request'
 import { ElMessage } from 'element-plus'
 import validCode from '../components/validCode.vue'; // 导入 validCode 组件
-
+import router from '@/router/index.js';
 
 // 定义重置密码的表单变量和响应式数据
 const resetForm = reactive({
@@ -127,7 +127,7 @@ const resetFormRef = ref();
 const handleValidCodeChange = (newCode) => {
   validCodeValue.value = newCode.toLowerCase(); // 将生成的验证码转换为小写
 };
-// 登录函数
+// 登录的函数
 const login = () => {
   formRef.value.validate((valid) => {
     // 检查用户输入的验证码是否与系统生成的验证码匹配, 不区分大小写
@@ -143,13 +143,7 @@ const login = () => {
           // 登录成功，跳转到主页
           ElMessage.success('登录成功')
           localStorage.setItem('project-user', JSON.stringify(res.data))// 将用户信息存储到本地存储中，名为project-user
-          setInterval(() => {
-            if ('ADMIN' === res.data.role) {
-              location.href = '/manager/home'
-            } else {
-              location.href = '/front/home'
-            }
-          }, 500)
+          router.push('/') 
         } else {
           // 登录失败，弹出提示框
           ElMessage.error('登录信息输入错误，登录失败')
