@@ -1,6 +1,5 @@
-CREATE TABLE `collect` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `student_id` int DEFAULT NULL COMMENT '学生ID',
-  `dish_id` int DEFAULT NULL COMMENT '菜品ID',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='收藏信息表';
+INSERT INTO `collect` (`id`, `student_id`, `dish_id`) VALUES (22, 2, 1);
+INSERT INTO `collect` (`id`, `student_id`, `dish_id`) VALUES (35, 1, 2);
+INSERT INTO `collect` (`id`, `student_id`, `dish_id`) VALUES (37, 1, 3);
+INSERT INTO `collect` (`id`, `student_id`, `dish_id`) VALUES (40, 1, 8);
+INSERT INTO `collect` (`id`, `student_id`, `dish_id`) VALUES (49, 1, 1);

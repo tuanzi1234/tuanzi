@@ -1,7 +1,19 @@
-CREATE TABLE `history` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `student_id` int DEFAULT NULL COMMENT '学生ID',
-  `dish_id` int DEFAULT NULL COMMENT '菜品ID',
-  `time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '浏览时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='浏览记录表';
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (24, 1, 12, '2025-02-04 23:09:55');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (30, 2, 7, '2025-01-25 02:22:40');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (32, 2, 12, '2025-01-29 15:39:09');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (33, 2, 13, '2025-01-24 02:33:53');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (34, 2, 14, '2025-01-24 02:33:57');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (35, 2, 15, '2025-01-24 02:34:03');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (36, 2, 1, '2025-01-31 03:18:28');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (37, 2, 2, '2025-01-31 03:09:13');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (38, 5, 1, '2025-02-05 04:16:36');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (39, 5, 2, '2025-02-01 20:03:12');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (40, 1, 8, '2025-02-25 20:00:19');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (41, 1, 13, '2025-02-04 23:10:04');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (42, 1, 14, '2025-02-04 23:10:21');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (43, 1, 1, '2025-03-28 13:06:31');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (44, 1, 2, '2025-03-18 18:36:35');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (45, 1, 7, '2025-03-28 13:06:25');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (46, 1, 3, '2025-03-01 20:33:57');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (47, 1, 19, '2025-02-02 02:12:15');
+INSERT INTO `history` (`id`, `student_id`, `dish_id`, `time`) VALUES (48, 5, 3, '2025-03-21 12:20:11');

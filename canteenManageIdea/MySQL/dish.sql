@@ -1,12 +1,10 @@
-CREATE TABLE `dish` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '菜品名称',
-  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '菜品主图',
-  `category_id` int DEFAULT NULL COMMENT '分类ID',
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '菜品描述',
-  `price` double(10,2) DEFAULT '0.00' COMMENT '菜品价格',
-  `num` int DEFAULT '0' COMMENT '剩余份数',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '上架状态',
-  `sales` int DEFAULT '0' COMMENT '销量',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='菜品信息表';
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (1, '红烧肉', 'http://localhost:9090/files/download/1742882888137-红烧肉.jpg', 9, '红烧肉（英文名：Red braised pork belly），一道著名的大众菜肴，各大菜系都有自己特色的红烧肉。肥而不腻，香甜松软，营养丰富，入口即化。', 13.00, 27, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (2, '回锅肉', 'http://localhost:9090/files/download/1737311269312-回锅肉.jpg', 4, '回锅肉口味独特，色泽红亮，肥而不腻，色香味俱全，是下饭菜中大部分人会选的菜。川菜中的回锅肉，最佳是蒜苗、仔姜、青椒做“翘头”，佐以郫县豆瓣、永川豆豉。而自贡家常菜中的回锅肉，就有青椒、仔姜、葱白配，藠头配，干豇豆配，莲花白配，甚至锅盔配。', 15.00, 29, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (3, '老母鸡汤', 'http://localhost:9090/files/download/1737311840232-老母鸡汤.jpg', 9, '老母鸡汤就是用老母鸡煮的汤，老母鸡宰杀后除去内脏等外部杂物洗净，与葱、姜、料酒、精盐同时放入开水锅内，用慢火焖煮（水不沸腾为宜，使鸡肉中蛋白质、脂肪等营养物质溢出）。约煮3小时，直至鸡肉脱骨，加入味精，即可食用。', 20.00, 21, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (7, '水饺', 'http://localhost:9090/files/download/1737372731141-水饺.jpg', 5, '饺子的特点是皮薄馅嫩，味道鲜美，形状独特，百食不厌。饺子的制作原料营养素种类齐全，蒸煮法保证营养较少流失，并且符合中国色香味饮食文化的内涵。饺子是一种历史悠久的民间吃食，深受老百姓的欢迎，民间有“好吃不过饺子”的俗语。每逢新春佳节，饺子更成为一种应时不可缺少的佳肴。\n饺子在河南省、河北省还有山西省、山东省一些地方方言中也被称为“扁食”。', 12.00, 43, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (8, '黄焖鸡', 'http://localhost:9090/files/download/1737372918197-黄焖鸡.jpg', 4, '黄焖鸡又叫香鸡煲、浓汁鸡煲，属于鲁菜系家常菜品，起源于山东省济南市。主要食材是鸡腿肉，配以青椒、土豆、香菇等焖制而成，味道美妙，具有肉质鲜美嫩滑的特点。\n', 13.00, 48, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (12, '猪脚饭', 'http://localhost:9090/files/download/1737472862758-猪脚饭.jpg', 5, '猪脚饭其特色在于使用秘制的中药材卤料配方，通常包含香叶、八角、桂皮、陈皮、小茴香等成分。“隆江猪脚”发展至今已有一千多年历史，其味道鲜美，口感弹嫩糯香，肥而不腻，入口香爽，让人回味悠长，征服了无数食客挑剔的味蕾。', 15.00, 54, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (13, '红烧牛肉面', 'http://localhost:9090/files/download/1737472970109-红烧牛肉面.jpg', 5, '红烧牛肉面是以牛腱肉、切面等为主要材料制作的食物，口味鲜香，为中华传统面食。形成了以兰州牛肉拉面、徐派菜牛肉面、四川牛肉面等诸多以地域命名的牛肉面饮食。', 14.00, 30, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (14, '扬州炒饭', 'http://localhost:9090/files/download/1737473107504-扬州炒饭.jpg', 5, '扬州炒饭又名扬州蛋炒饭，是江苏省扬州市的一道传统名菜，属于淮扬菜，其主要食材有米饭、火腿、鸡蛋、虾仁等。\n扬州炒饭选料严谨、制作精细、加工讲究，而且注重配色。炒制完成后，颗粒分明、粒粒松散、软硬有度、色彩调和、光泽饱满、配料多样、鲜嫩滑爽、香糯可口。', 13.00, 58, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (15, '螺蛳粉', 'http://localhost:9090/files/download/1737655907935-螺蛳粉.jpg', 5, '螺蛳粉（Liuzhou Luosifen） [20]，是广西壮族自治区柳州市的特色小吃之一，具有辣、爽、鲜、酸、烫的独特风味。是柳州最具地方特色的名小吃。螺蛳粉的味美还因为它有着独特的汤料。汤料由螺蛳、山奈、八角、肉桂、丁香、多种辣椒、等天然香料和味素配制而成。2018年8月20日，“柳州螺蛳粉”获得国家地理标志商标。2008年，柳州螺蛳粉手工制作技艺入选广西壮族自治区第二批非物质文化遗产名录。2020年被列入国家级非物质文化遗产名单。', 12.00, 60, '上架', 0);
+INSERT INTO `dish` (`id`, `name`, `img`, `category_id`, `content`, `price`, `num`, `status`, `sales`) VALUES (19, '酸菜鱼', 'http://localhost:9090/files/download/1738413682143-酸菜鱼.jpg', 7, '酸菜鱼也称为酸汤鱼，是一道源自重庆市的经典菜品，以其特有的调味和独特的烹调技法而著称。流行于20世纪90年代，是重庆江湖菜的开路先锋之一。\n酸菜鱼以草鱼为主料，配以泡菜等食材煮制而成，口味酸辣可口；鱼含丰富优质蛋白，能提供人丰富的蛋白质、矿物质等营养；酸菜中的乳酸可以促进人体对铁元素的吸收，还可以增加人的食欲。\n关于酸菜鱼的历史来源众说纷纭，也无法考证，后经传承，制作方法也各有不同，但口味基本一致。', 14.00, 50, '上架', 0);

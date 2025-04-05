@@ -1,5 +1,14 @@
-CREATE TABLE `search` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '名称',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='搜索信息表';
+INSERT INTO `search` (`id`, `name`) VALUES (4, '汤');
+INSERT INTO `search` (`id`, `name`) VALUES (5, '螺蛳粉');
+INSERT INTO `search` (`id`, `name`) VALUES (7, '饭');
+INSERT INTO `search` (`id`, `name`) VALUES (8, '炒饭');
+INSERT INTO `search` (`id`, `name`) VALUES (11, '鸡');
+INSERT INTO `search` (`id`, `name`) VALUES (12, '回锅肉');
+INSERT INTO `search` (`id`, `name`) VALUES (13, '清蒸');
+INSERT INTO `search` (`id`, `name`) VALUES (14, 'dasdadadaadadasdfsgdfsfdf');
+INSERT INTO `search` (`id`, `name`) VALUES (25, '红烧肉');
+INSERT INTO `search` (`id`, `name`) VALUES (29, '水饺');
+INSERT INTO `search` (`id`, `name`) VALUES (31, '肉');
+INSERT INTO `search` (`id`, `name`) VALUES (33, '鱼');
+INSERT INTO `search` (`id`, `name`) VALUES (37, '回');
+INSERT INTO `search` (`id`, `name`) VALUES (38, '红烧');

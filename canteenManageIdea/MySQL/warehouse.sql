@@ -1,9 +1,11 @@
-CREATE TABLE `warehouse` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '材料名称',
-  `price` double(10,2) DEFAULT '0.00' COMMENT '材料价格',
-  `num` int DEFAULT '0' COMMENT '剩余份数',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '库存状态',
-  `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '购入时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='库存信息表';
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (15, '米饭', 2.50, 100, '正常', '2025-01-01');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (16, '鸡肉', 10.00, 50, '正常', '2025-01-05');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (17, '白菜', 3.00, 80, '缺货', '2025-01-03');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (18, '豆腐', 4.00, 120, '正常', '2025-01-02');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (19, '油', 6.00, 200, '正常', '2025-01-10');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (20, '辣椒粉', 1.50, 60, '缺货', '2025-01-08');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (21, '番茄酱', 5.00, 400, '正常', '2025-01-12');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (22, '鸡蛋', 8.00, 150, '正常', '2025-01-07');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (23, '面条', 3.50, 900, '正常', '2025-01-09');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (24, '胡椒粉', 2.00, 70, '缺货', '2025-01-06');
+INSERT INTO `warehouse` (`id`, `name`, `price`, `num`, `status`, `time`) VALUES (25, '盐', 2.50, 1000, '过剩', '2025-01-31 23:59:42');

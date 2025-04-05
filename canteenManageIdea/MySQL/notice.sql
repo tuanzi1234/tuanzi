@@ -1,8 +1,3 @@
-CREATE TABLE `notice` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '原料名',
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '购买价格',
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '购买价格',
-  `time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '购买时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='食堂库存表';
+INSERT INTO `notice` (`id`, `title`, `content`, `time`) VALUES (9, '这是公告233', '这是公告233', '2025-01-19 23:52:41');
+INSERT INTO `notice` (`id`, `title`, `content`, `time`) VALUES (10, '这是公告224', '121231', '2025-01-20 20:13:58');
+INSERT INTO `notice` (`id`, `title`, `content`, `time`) VALUES (17, '测试公告1', '测试公告12314', '2025-02-01 21:16:28');

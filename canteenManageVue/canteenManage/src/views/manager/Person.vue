@@ -1,10 +1,10 @@
 <template>
   <div style="width: 50%;" class="card">
-    <el-form ref="user" :model="data.user" label-width="70px" style="padding: 20px; ">
+    <el-form ref="user" :model="data.user" :rules="data.rules" label-width="70px" style="padding: 20px; ">
       <el-form-item prop="avatar" label="头像">
         <el-upload class="avatar-uploader" :action="baseUrl + '/files/upload'" :on-success="handleAvatarSuccess"
           :show-file-list="false">
-          <img v-if="data.user.avatar" :src="data.user.avatar"  class="avatar" />
+          <img v-if="data.user.avatar" :src="data.user.avatar" class="avatar" />
         </el-upload>
       </el-form-item>
       <el-form-item prop="username" label="账号">
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive,ref } from 'vue'
 import request from '@/utils/request'
 
 
@@ -36,8 +36,22 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 
 // 用户表单数据
 const data = reactive({
-  user: JSON.parse(localStorage.getItem('project-user') || '{}')
+  user: JSON.parse(localStorage.getItem('project-user') || '{}'),
+  //校验的规则
+  rules: {
+    name: [
+      { required: true, message: '请输入账号', trigger: 'blur' }
+    ],
+    phone: [
+      { required: true, message: '请输入手机号', trigger: 'blur' },
+      { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号', trigger: 'blur' }
+    ],
+    email: [
+      { required: true, message: '请输入邮箱', trigger: 'blur' },
+    ]
+  }
 })
+const user = ref() // 添加这行
 
 // 处理头像上传成功的函数
 const handleAvatarSuccess = (res) => {
@@ -48,17 +62,22 @@ const handleAvatarSuccess = (res) => {
 const emit = defineEmits(['updateUser'])
 // 更新个人信息的函数
 const update = () => {
-  if (data.user.role === 'ADMIN') {
-    request.put('/admin/update', data.user).then(res => {
-      if (res.code === '200') {
-        ElMessage.success('更新成功')
-        localStorage.setItem('project-user', JSON.stringify(data.user))
-        emit('updateUser')
-      } else {
-        ElMessage.error(res.msg)
+  user.value.validate(valid => {
+    if (valid) {
+      if (data.user.role === 'ADMIN') {
+        request.put('/admin/update', data.user).then(res => {
+          if (res.code === '200') {
+            ElMessage.success('更新成功')
+            localStorage.setItem('project-user', JSON.stringify(data.user))
+            emit('updateUser')
+          } else {
+            ElMessage.error(res.msg)
+          }
+        })
       }
-    })
-  } 
+    }
+  })
+
 }
 
 </script>

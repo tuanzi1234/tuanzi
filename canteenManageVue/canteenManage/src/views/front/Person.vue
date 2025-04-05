@@ -1,7 +1,7 @@
 <template>
   <div style="width: 40%; margin: 20px auto;" class="card">
     <div class="card-title" style="margin: 10px 0 20px 15px; font-weight: bold; font-size: 20px; ">个人中心</div>
-    <el-form ref="user" :model="data.user" label-width="70px" style="padding: 20px;">
+    <el-form ref="user" :rules="data.rules" :model="data.user" label-width="70px" style="padding: 20px;">
       <div style="text-align: center; margin-bottom: 20px;">
         <el-upload class="avatar-uploader" :action="baseUrl + '/files/upload'" :on-success="handleAvatarSuccess"
           :show-file-list="false">
@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive,ref } from 'vue'
 import request from '@/utils/request'
 
 
@@ -71,23 +71,42 @@ const data = reactive({
   formVisible: false,
   account: 10,
   payType: null,
+  //校验的规则
+  rules: {
+    name: [
+      { required: true, message: '请输入账号', trigger: 'blur' }
+    ],
+    phone: [
+      { required: true, message: '请输入手机号', trigger: 'blur' },
+      { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号', trigger: 'blur' }
+    ],
+    email: [
+      { required: true, message: '请输入邮箱', trigger: 'blur' },
+    ]
+  }
 })
+const user = ref()
 
 // 定义一个自定义事件，用于通知父组件更新用户信息
 const emit = defineEmits(['updateUser'])
 // 更新个人信息的函数
 const update = () => {
-  if (data.user.role === 'STUDENT') {
-    request.put('/student/update', data.user).then(res => {
-      if (res.code === '200') {
-        ElMessage.success('更新成功')
-        localStorage.setItem('project-user', JSON.stringify(data.user))
-        emit('updateUser')
-      } else {
-        ElMessage.error(res.msg)
+  user.value.validate(valid => {
+    if (valid) {
+      if (data.user.role === 'STUDENT') {
+        request.put('/student/update', data.user).then(res => {
+          if (res.code === '200') {
+            ElMessage.success('更新成功')
+            localStorage.setItem('project-user', JSON.stringify(data.user))
+            emit('updateUser')
+          } else {
+            ElMessage.error(res.msg)
+          }
+        })
       }
-    })
-  }
+    }
+  })
+
 }
 
 // 处理头像上传成功的函数

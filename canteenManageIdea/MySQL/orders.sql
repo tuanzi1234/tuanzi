@@ -1,12 +1,4 @@
-CREATE TABLE `orders` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `student_id` int DEFAULT NULL COMMENT '学生ID',
-  `order_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单编号',
-  `create_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '下单时间',
-  `pay_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付时间',
-  `pay_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付单号',
-  `pay_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付方式',
-  `price` decimal(10,2) DEFAULT NULL COMMENT '订单价格',
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单状态',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单信息表';
+INSERT INTO `orders` (`id`, `student_id`, `order_no`, `create_time`, `pay_time`, `pay_no`, `pay_type`, `price`, `status`) VALUES (25, 1, '20250131152907', '2025-01-31 15:29:07', '2025-01-31 15:29:29', '953936194022058975904172515681', '支付宝', 69.00, '已完成');
+INSERT INTO `orders` (`id`, `student_id`, `order_no`, `create_time`, `pay_time`, `pay_no`, `pay_type`, `price`, `status`) VALUES (29, 1, '20250202021450', '2025-02-02 02:14:50', '2025-02-02 02:15:00', '491904831811565537148383703445', '支付宝', 30.00, '已完成');
+INSERT INTO `orders` (`id`, `student_id`, `order_no`, `create_time`, `pay_time`, `pay_no`, `pay_type`, `price`, `status`) VALUES (45, 1, '20250225182156', '2025-02-25 18:21:56', NULL, NULL, NULL, 13.00, '待支付');
+INSERT INTO `orders` (`id`, `student_id`, `order_no`, `create_time`, `pay_time`, `pay_no`, `pay_type`, `price`, `status`) VALUES (46, 1, '20250226020538', '2025-02-26 02:05:38', '2025-02-26 02:05:47', '898155852149514895810062091163', '微信', 27.00, '已上餐');

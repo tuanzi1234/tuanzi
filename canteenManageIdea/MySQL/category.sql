@@ -1,6 +1,7 @@
-CREATE TABLE `category` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '分类名称',
-  `content` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '分类描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='分类信息表';
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (4, '下饭菜', '这是下饭菜');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (5, '主食', '这是主食');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (6, '蔬菜', '这是蔬菜');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (7, '河鲜', '这是河鲜');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (8, '海鲜', '这是海鲜');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (9, '肉', '这是肉');
+INSERT INTO `category` (`id`, `title`, `content`) VALUES (28, '其他', NULL);
