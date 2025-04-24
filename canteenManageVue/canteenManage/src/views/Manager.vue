@@ -4,7 +4,7 @@
     <div class="manager-header">
       <!------------------ 标题及logo --------------------->
       <div class="manager-header-left">
-        <img src="@/assets/imgs/logo.png" alt="">
+        <img src="@/assets/imgs/logo.svg" alt="">
         <div class="title">食堂管理</div>
       </div>
       <!------------------ 顶部导航栏 --------------------->

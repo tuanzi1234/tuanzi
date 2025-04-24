@@ -202,6 +202,18 @@ public class OrdersService {
         orders.setPayTime(DateUtil.now());
         orders.setPayNo(RandomUtil.randomNumbers(30));
         orders.setStatus("已支付");
+        OrdersItem query = new OrdersItem();
+        query.setOrderId(orders.getId());
+        List<OrdersItem> orderItems = ordersItemMapper.selectAll(query);
+
+        for (OrdersItem item : orderItems) {
+            Dish dish = dishMapper.selectById(item.getDishId());
+            if (ObjectUtil.isNotNull(dish)) {
+                // 销量累加
+                dish.setSales((dish.getSales() == null ? 0 : dish.getSales()) + item.getNum());
+                dishMapper.updateById(dish);
+            }
+        }
         ordersMapper.updateById(orders);
 
         // 生成token

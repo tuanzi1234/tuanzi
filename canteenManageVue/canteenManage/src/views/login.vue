@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <div class="login-title" style=" font-size: 30px; font-weight: bold; margin-bottom: 10px; color:#F0FFFF">欢 迎 登 录
+      <div class="login-title" style=" font-size: 30px; font-weight: bold; margin-bottom: 10px; color:#000000">欢 迎 登 录
       </div>
       <el-form ref="formRef" :model="data.form" :rules="data.rules">
         <el-form-item prop="username">
@@ -210,7 +210,7 @@ const resetPassword = () => {
   /* 设置登录框阴影效果 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /* 设置登录框背景颜色为半透明的白色 */
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
   /* 使用flex布局 */
   display: flex;
   /* 水平居中内容 */

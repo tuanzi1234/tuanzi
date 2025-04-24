@@ -3,7 +3,7 @@
     <div class="front-header-left">
       <!------------------ 标题及logo --------------------->
       <div class="front-header-left">
-        <img src="@/assets/imgs/logo.png" alt="">
+        <img src="@/assets/imgs/logo_3.svg" alt="">
         <div class="title">食堂管理</div>
       </div>
     </div>

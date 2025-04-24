@@ -40,7 +40,7 @@
             <el-tag v-if="scope.row.status === '已完成'" type="success">{{ scope.row.status }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="订单详情">
+        <el-table-column label="订单详情" width="120">
           <template v-slot="scope">
             <el-button type="primary" plain @click="loadDetail(scope.row.id, scope.row.status)">查看详情</el-button>
           </template>
