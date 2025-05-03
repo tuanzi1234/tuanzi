@@ -1,19 +1,58 @@
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (1, '202301001', '$2a$10$8mHVcoy0eOqTZWy0l68GZOtStoopRanM5..dmqxdLP9.GTvPZU6YK', '张三', 'STUDENT', 'http://localhost:9090/files/download/1737268713435-118524281_p1.png', '1381234567', 'zhang.san@example.com', 1092.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (2, '202301002', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '李四', 'STUDENT', 'http://localhost:9090/files/download/1737266015952-69633089_p0.jpg', '13987654322', 'li.si@example.com', 1757.50);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (3, '202301003', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '王五', 'STUDENT', NULL, '13765432109', 'wang.wu@example.com', 1200.75);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (4, '202301004', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '赵七', 'STUDENT', NULL, '13654321098', 'zhao.liu@example.com', 900.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (5, '202301005', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '孙七', 'STUDENT', NULL, '13543210987', 'sun.qi@example.com', 1380.25);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (6, '202301006', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '周八', 'STUDENT', NULL, '13412345678', 'zhou.ba@example.com', 1100.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (7, '202301007', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '吴九', 'STUDENT', NULL, '13398765432', 'wu.jiu@example.com', 1450.50);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (8, '202301008', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '郑十', 'STUDENT', NULL, '13287654321', 'zheng.shi@example.com', 1600.75);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (9, '202301009', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '钱十一', 'STUDENT', NULL, '13176543210', 'qian.shiyi@example.com', 2000.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (10, '202301010', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '孙十二', 'STUDENT', NULL, '13065432109', 'sun.shier@example.com', 850.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (13, '202301013', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '黄十五', 'STUDENT', NULL, '13732109876', 'huang.shiwu@example.com', 1950.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (14, '202301014', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '赵十六', 'STUDENT', NULL, '13621098765', 'zhao.shiliu@example.com', 1750.50);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (16, '202301016', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '赵四', 'STUDENT', 'http://localhost:9090/files/download/1737266154937-9362723d645fcba37e843436a141f68b356132823.png', '13454678987', '131234543223456@qq.com', 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (20, '202301018', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '周十八', 'STUDENT', NULL, '134551231212313', '2341231231211123@qq.com', 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (22, '202301015', '$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea', '王十八', 'STUDENT', NULL, '11241231241241', '11241231241241@qq.com', 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (28, '202301011', '$2a$10$JBPWeqr8/dgEx1a4BA4hbOwjqpckj1dHOI/bc1hqhByvgCz.g1nS2', '王五', 'STUDENT', NULL, NULL, NULL, 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (29, '202301012', '$2a$10$JitZSLoXxmBF8EHeKUKR7esxzv2n45IDJBifk5O.WAZmHGx/.q9Ye', '周二十三', 'STUDENT', NULL, NULL, NULL, 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (32, '202301022', '$2a$10$HB6UHMzWPIa7UUokoROMCOPzUzOSqkQZicdXjkQpKtydLgydq4YgS', '202301022', 'STUDENT', NULL, NULL, NULL, 0.00);
-INSERT INTO `student` (`id`, `username`, `password`, `name`, `role`, `avatar`, `phone`, `email`, `account`) VALUES (33, '202301023', '$2a$10$nHzRgi4Jr8HPWXNe/OifUetRc0HTRamxnIMMfGiJdDa5vz0L2NcZW', '202301023', 'STUDENT', NULL, NULL, NULL, 0.00);
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: canteen_manage
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `student` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '账号',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '密码',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '姓名',
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '角色',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '头像',
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '电话',
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
+  `account` double(10,2) DEFAULT '0.00' COMMENT '余额',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='学生信息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student`
+--
+
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (1,'202301001','$2a$10$8mHVcoy0eOqTZWy0l68GZOtStoopRanM5..dmqxdLP9.GTvPZU6YK','张三','STUDENT','http://localhost:9090/files/download/1745346980735-student1.jpg','13812345671','zhang.san@example.com',939.00),(2,'202301002','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','李四','STUDENT','http://localhost:9090/files/download/1745346986630-student2.jpg','13812345671','li.si@example.com',1757.50),(3,'202301003','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','王五','STUDENT','http://localhost:9090/files/download/1745346992701-student3.jpg','13812345671','wang.wu@example.com',1200.75),(4,'202301004','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','赵七','STUDENT','http://localhost:9090/files/download/1745346997870-student4.jpg','13812345671','zhao.liu@example.com',900.00),(5,'202301005','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','孙七','STUDENT','http://localhost:9090/files/download/1745347002973-student5.jpg','13812345671','sun.qi@example.com',1380.25),(6,'202301006','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','周八','STUDENT',NULL,'13812345671','zhou.ba@example.com',1100.00),(7,'202301007','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','吴九','STUDENT',NULL,'13812345671','wu.jiu@example.com',1450.50),(8,'202301008','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','郑十','STUDENT',NULL,'13287654321','zheng.shi@example.com',1600.75),(9,'202301009','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','钱十一','STUDENT',NULL,'13176543210','qian.shiyi@example.com',2000.00),(10,'202301010','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','孙十二','STUDENT',NULL,'13065432109','sun.shier@example.com',850.00),(13,'202301013','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','黄十五','STUDENT',NULL,'13732109876','huang.shiwu@example.com',1950.00),(14,'202301014','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','赵十六','STUDENT',NULL,'13621098765','zhao.shiliu@example.com',1750.50),(16,'202301016','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','赵四','STUDENT','http://localhost:9090/files/download/1737266154937-9362723d645fcba37e843436a141f68b356132823.png','13454678987','131234543223456@qq.com',0.00),(20,'202301018','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','周十八','STUDENT',NULL,'13812345671','2341231231211123@qq.com',0.00),(22,'202301015','$2a$10$At9/EsZfu8qJQRJ2OVsyQ.LzlQG3u7OtJ7XP1CDViEsyPtITJz0Ea','王十八','STUDENT',NULL,'13812345671','11241231241241@qq.com',0.00),(28,'202301011','$2a$10$JBPWeqr8/dgEx1a4BA4hbOwjqpckj1dHOI/bc1hqhByvgCz.g1nS2','王五','STUDENT',NULL,NULL,NULL,0.00),(29,'202301012','$2a$10$JitZSLoXxmBF8EHeKUKR7esxzv2n45IDJBifk5O.WAZmHGx/.q9Ye','周二十三','STUDENT',NULL,NULL,NULL,0.00),(32,'202301022','$2a$10$HB6UHMzWPIa7UUokoROMCOPzUzOSqkQZicdXjkQpKtydLgydq4YgS','202301022','STUDENT',NULL,NULL,NULL,0.00),(33,'202301023','$2a$10$nHzRgi4Jr8HPWXNe/OifUetRc0HTRamxnIMMfGiJdDa5vz0L2NcZW','202301023','STUDENT',NULL,NULL,NULL,0.00),(34,'202401001','$2a$10$D4V9PlbrVboiZ4vlDWunFu5zL/JKsphwLBzTR1hi3Z3cUTpHKVT66','202401001','STUDENT',NULL,NULL,NULL,0.00);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-04-26 15:14:37
